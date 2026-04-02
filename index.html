@@ -2,227 +2,303 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="icon.png" type="image/png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meyi Soft — Ecosistema Gastronómico Omnicanal</title>
+<title>Meyi Soft — Software Empresarial para el Sector Alimenticio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="icon.png" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --morado-real: #3d1040;
-    --morado-sec: #5D2A5B;
-    --oro: #D4AF37;
-    --crema: #F2F1E8;
-    --texto: #2A2A2A;
-    --whatsapp: #25D366;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--crema); color:var(--texto); font-family:'DM Sans',sans-serif; overflow-x:hidden; }
+:root {
+  --morado: #3d1040;
+  --morado-sec: #5D2A5B;
+  --oro: #D4AF37;
+  --crema: #F2F1E8;
+  --texto: #2A2A2A;
+  --whatsapp: #25D366;
+  --blanco: #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--crema);color:var(--texto);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
 
-  /* NAV */
-  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1rem 3.5rem; background:rgba(242,241,232,0.93); backdrop-filter:blur(12px); border-bottom:1px solid rgba(212,175,55,0.2); transition:box-shadow .3s; }
-  nav.scrolled { box-shadow:0 4px 32px rgba(61,16,64,.12); }
-  .nav-logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:#3d1040; letter-spacing:-.02em; }
-  .nav-logo span { color:var(--oro); }
-  nav ul { list-style:none; display:flex; gap:1.8rem; align-items:center; }
-  nav ul a { text-decoration:none; color:var(--texto); font-size:.85rem; font-weight:500; letter-spacing:.03em; text-transform:uppercase; transition:color .2s; }
-  nav ul a:hover { color:#3d1040; }
-  .nav-portal { color:#3d1040 !important; padding:.45rem 1.2rem; border-radius:100px; border:2px solid #3d1040; font-weight:600 !important; transition:background .2s,color .2s !important; }
-  .nav-portal:hover { background:#3d1040 !important; color:#fff !important; }
-  .nav-cta { background:var(--oro); color:#fff !important; padding:.45rem 1.3rem; border-radius:100px; font-weight:600 !important; transition:transform .2s,background .2s !important; }
-  .nav-cta:hover { background:#b8932b !important; transform:translateY(-1px); }
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1rem 3.5rem;background:rgba(242,241,232,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(212,175,55,0.2);transition:box-shadow .3s, padding .3s;}
+nav.scrolled{box-shadow:0 4px 32px rgba(61,16,64,.12); padding:.8rem 3.5rem;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--morado);letter-spacing:-.02em;}
+nav ul{list-style:none;display:flex;gap:1.8rem;align-items:center;}
+nav ul a, nav ul button{text-decoration:none;color:var(--texto);font-size:.82rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .2s; background:none; border:none; cursor:pointer; font-family: inherit;}
+nav ul a:hover, nav ul button:hover{color:var(--morado);}
+.nav-portal-btn {color: var(--morado); display: flex; align-items: center; gap: 6px;}
+.nav-portal-btn::before {content:''; display:inline-block; width:8px; height:8px; background:var(--oro); border-radius:50%;}
+.nav-cta{background:var(--oro);color:#fff!important;padding:.5rem 1.4rem;border-radius:100px;font-weight:700!important;transition:background .2s,transform .2s,box-shadow .2s!important;box-shadow:0 4px 14px rgba(212,175,55,.3);}
+.nav-cta:hover{background:#b8932b!important;transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,175,55,.4);}
 
-  /* HERO */
-  #hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:8rem 4rem 4rem; position:relative; overflow:hidden; }
-  #hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 110% 50%,rgba(61,16,64,.08) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at -10% 80%,rgba(212,175,55,.07) 0%,transparent 60%); pointer-events:none; }
-  .hero-badge { display:inline-flex; align-items:center; gap:.5rem; background:rgba(61,16,64,.08); border:1px solid rgba(61,16,64,.15); border-radius:100px; padding:.35rem 1rem; font-size:.78rem; font-weight:600; color:#3d1040; letter-spacing:.08em; text-transform:uppercase; margin-bottom:1.5rem; animation:fadeUp .6s ease both; }
-  .hero-badge::before { content:''; width:6px; height:6px; background:var(--oro); border-radius:50%; }
-  .hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.8rem,5vw,4.2rem); font-weight:900; line-height:1.08; color:#3d1040; margin-bottom:1.5rem; animation:fadeUp .7s .1s ease both; }
-  .hero-title em { font-style:normal; color:var(--oro); position:relative; }
-  .hero-title em::after { content:''; position:absolute; bottom:2px; left:0; right:0; height:3px; background:var(--oro); border-radius:2px; opacity:.4; }
-  .hero-sub { font-size:1.08rem; line-height:1.7; color:#555; max-width:480px; margin-bottom:2.4rem; font-weight:300; animation:fadeUp .7s .2s ease both; }
-  .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; animation:fadeUp .7s .3s ease both; }
-  .btn-primary { background:#3d1040; color:#fff; padding:.9rem 2.2rem; border-radius:100px; font-size:.95rem; font-weight:600; text-decoration:none; transition:transform .2s,box-shadow .2s; box-shadow:0 6px 32px rgba(61,16,64,.25); }
-  .btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(61,16,64,.35); }
-  .btn-secondary { background:transparent; color:#3d1040; padding:.9rem 2.2rem; border-radius:100px; font-size:.95rem; font-weight:600; text-decoration:none; border:2px solid rgba(61,16,64,.25); transition:border-color .2s,background .2s; }
-  .btn-secondary:hover { border-color:#3d1040; background:rgba(61,16,64,.04); }
+/* ─── HERO CON IMAGEN DIFUMINADA ─── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:9rem 2rem 5rem;position:relative;overflow:hidden;}
+.hero-bg-img {
+  position:absolute; inset:0; z-index:0;
+  /* CAMBIA ESTA URL POR TU IMAGEN */
+  background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); 
+  background-size: cover; background-position: center;
+  filter: blur(1px);
+  transform: scale(1.05);
+}
+.hero-overlay {
+  position:absolute; inset:0; z-index:1;
+  background: linear-gradient(135deg, rgba(61,16,64,0.85) 0%, rgba(26,8,32,0.95) 100%);
+}
+.hero-content {position: relative; z-index: 2; max-width: 900px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(4px);border-radius:100px;padding:.4rem 1.2rem;font-size:.76rem;font-weight:700;color:#fff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.8rem;animation:fadeUp .6s ease both;}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--oro);border-radius:50%;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.2rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:1.4rem;animation:fadeUp .7s .1s ease both;}
+.hero-title em{font-style:italic;color:var(--oro);}
+.hero-sub{font-size:1.15rem;line-height:1.75;color:rgba(255,255,255,0.8);max-width:600px;margin:0 auto 2.8rem;font-weight:300;animation:fadeUp .7s .2s ease both;}
+.hero-actions{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .7s .3s ease both;}
+.btn-primary{background:var(--oro);color:#fff;padding:1rem 2.4rem;border-radius:100px;font-size:.95rem;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 6px 32px rgba(212,175,55,.3);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(212,175,55,.45);}
+.btn-ghost{background:rgba(255,255,255,0.05);backdrop-filter:blur(5px);color:#fff;padding:1rem 2.4rem;border-radius:100px;font-size:.95rem;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,0.4);transition:border-color .2s,background .2s;}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.15);}
 
-  /* HERO VISUAL */
-  .hero-visual { display:flex; justify-content:center; align-items:center; animation:fadeIn .9s .4s ease both; }
-  .hero-card-stack { position:relative; width:340px; height:420px; }
-  .hcard { position:absolute; border-radius:20px; padding:1.8rem; box-shadow:0 20px 60px rgba(0,0,0,.12); }
-  .hcard-main { width:300px; background:#3d1040; top:40px; left:20px; z-index:3; }
-  .hcard-main .card-label { font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.5); margin-bottom:.8rem; }
-  .hcard-main h3 { font-family:'Playfair Display',serif; font-size:1.5rem; color:#fff; font-weight:700; margin-bottom:.5rem; }
-  .hcard-main p { font-size:.85rem; color:rgba(255,255,255,.65); line-height:1.6; }
-  .hcard-main .card-stat { margin-top:1.5rem; display:flex; align-items:baseline; gap:.4rem; }
-  .hcard-main .stat-num { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900; color:var(--oro); line-height:1; }
-  .hcard-main .stat-label { font-size:.8rem; color:rgba(255,255,255,.6); }
-  .hcard-accent { width:220px; background:var(--oro); bottom:20px; right:0; z-index:2; padding:1.4rem 1.6rem; }
-  .hcard-accent p { font-size:.82rem; font-weight:600; color:#fff; margin-bottom:.3rem; }
-  .hcard-accent .mini-bars { display:flex; gap:4px; align-items:flex-end; height:40px; margin-top:.8rem; }
-  .mini-bar { flex:1; background:rgba(255,255,255,.4); border-radius:3px; }
-  .hcard-float { width:160px; background:#fff; top: -40px; right:-60px; z-index:4; padding:1.2rem; border:1px solid rgba(212,175,55,.3); }
-  .hcard-float .float-icon { font-size:1.6rem; margin-bottom:.5rem; }
-  .hcard-float p { font-size:.78rem; font-weight:600; color:#3d1040; }
-  .hcard-float span { font-size:.72rem; color:#888; }
+/* ─── STATS BAR ─── */
+.stats-bar{background:var(--morado-sec);padding:3rem 4rem;display:flex;justify-content:space-around;flex-wrap:wrap;gap:2rem;position:relative;z-index:5;box-shadow:0 -10px 30px rgba(0,0,0,0.1);}
+.stat-item{text-align:center;}
+.stat-item .num{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--oro);display:block;line-height:1;}
+.stat-item .desc{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:.6rem;font-weight:400;letter-spacing:.02em;}
 
-  /* STATS BAR */
-  .stats-bar { background:#3d1040; padding:3rem 4rem; display:flex; justify-content:space-around; flex-wrap:wrap; gap:2rem; }
-  .stat-item { text-align:center; }
-  .stat-item .num { font-family:'Playfair Display',serif; font-size:2.8rem; font-weight:900; color:var(--oro); display:block; line-height:1; }
-  .stat-item .desc { font-size:.82rem; color:rgba(255,255,255,.65); margin-top:.4rem; font-weight:300; letter-spacing:.02em; }
+/* ─── SECTION COMÚN ─── */
+.section-eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--oro);margin-bottom:.8rem;display:block;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:900;color:var(--morado);line-height:1.15;margin-bottom:1rem;}
+.section-sub{font-size:1rem;color:#666;line-height:1.7;font-weight:300;}
 
-  /* SECTION HEADER */
-  .section-header { text-align:center; max-width:640px; margin:0 auto 4rem; }
-  .section-eyebrow { font-size:.78rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:.8rem; display:block; }
-  .section-title { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800; color:#3d1040; line-height:1.18; margin-bottom:1rem; }
-  .section-sub { font-size:1rem; color:#666; line-height:1.7; font-weight:300; }
+/* ─── QUIENES SOMOS ─── */
+#nosotros{padding:6rem 4rem;background:#fff;}
+.nosotros-layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.nosotros-content p{font-size:.97rem;color:#666;line-height:1.78;font-weight:300;margin-bottom:1rem;}
+.values-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.8rem;}
+.val-card{background:var(--crema);border-radius:14px;padding:1.2rem 1.4rem;border-left:3px solid var(--oro);transition:transform .2s;}
+.val-card:hover{transform:translateX(5px);}
+.val-card h4{font-size:.88rem;font-weight:700;color:var(--morado);margin-bottom:.3rem;}
+.val-card p{font-size:.78rem;color:#777;line-height:1.5;font-weight:300;}
+.vision-card{background:linear-gradient(135deg, var(--morado) 0%, var(--morado-sec) 100%);border-radius:24px;padding:2.8rem;position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(61,16,64,.15);}
+.vision-card::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(212,175,55,.1);}
+.vision-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;font-weight:800;margin-bottom:1rem;position:relative;z-index:1;line-height:1.3;}
+.vision-card p{font-size:.9rem;color:rgba(255,255,255,.68);line-height:1.7;font-weight:300;position:relative;z-index:1;margin-bottom:1rem;}
+.vision-divider{width:40px;height:3px;background:var(--oro);border-radius:2px;margin:1.2rem 0;position:relative;z-index:1;}
+.mision-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:.5rem;display:block;position:relative;z-index:1;}
 
-  /* QUIÉNES SOMOS */
-  #nosotros { padding:6rem 4rem; background:#fff; }
-  .nosotros-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
-  .nosotros-content .section-eyebrow { text-align:left; display:block; margin-bottom:.8rem; }
-  .nosotros-content .section-title { text-align:left; margin-bottom:1.2rem; }
-  .nosotros-content p { font-size:.98rem; color:#666; line-height:1.75; font-weight:300; margin-bottom:1.1rem; }
-  .nosotros-values { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.8rem; }
-  .nv-card { background:var(--crema); border-radius:14px; padding:1.2rem 1.4rem; border-left:3px solid var(--oro); }
-  .nv-card h4 { font-size:.9rem; font-weight:700; color:#3d1040; margin-bottom:.3rem; }
-  .nv-card p { font-size:.8rem; color:#777; line-height:1.5; font-weight:300; margin:0; }
-  .nosotros-visual { position:relative; }
-  .vision-card { background:#3d1040; border-radius:24px; padding:2.8rem; position:relative; overflow:hidden; }
-  .vision-card::before { content:''; position:absolute; top:-60px; right:-60px; width:220px; height:220px; border-radius:50%; background:rgba(212,175,55,.12); }
-  .vision-card::after { content:''; position:absolute; bottom:-40px; left:-40px; width:160px; height:160px; border-radius:50%; background:rgba(93,42,91,.4); }
-  .vision-eyebrow { font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--oro); margin-bottom:.8rem; display:block; }
-  .vision-card h3 { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:800; color:#fff; line-height:1.25; margin-bottom:1.2rem; position:relative; z-index:1; }
-  .vision-card p { font-size:.92rem; color:rgba(255,255,255,.7); line-height:1.7; font-weight:300; position:relative; z-index:1; margin-bottom:1rem; }
-  .vision-divider { width:40px; height:3px; background:var(--oro); border-radius:2px; margin:1.4rem 0; position:relative; z-index:1; }
-  .mision-label { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:.5rem; display:block; position:relative; z-index:1; }
+/* ─── PRODUCTOS HEADER ─── */
+#productos{padding:6rem 4rem 2rem;}
+.productos-header{text-align:center;max-width:680px;margin:0 auto;}
 
-  /* PILARES */
-  #pilares { padding:6rem 4rem; }
-  .pilares-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; max-width:1200px; margin:0 auto; }
-  .pilar-card { background:#fff; border-radius:20px; padding:2.2rem; border:1px solid rgba(0,0,0,.06); position:relative; overflow:hidden; transition:transform .25s,box-shadow .25s; cursor:default; }
-  .pilar-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#3d1040,var(--oro)); transform:scaleX(0); transform-origin:left; transition:transform .3s ease; }
-  .pilar-card:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(0,0,0,.1); }
-  .pilar-card:hover::before { transform:scaleX(1); }
-  .pilar-icon { width:52px; height:52px; background:rgba(61,16,64,.07); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1.2rem; }
-  .pilar-num { font-size:.72rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--oro); margin-bottom:.4rem; }
-  .pilar-card h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:#3d1040; margin-bottom:.7rem; line-height:1.3; }
-  .pilar-card p { font-size:.88rem; color:#666; line-height:1.65; font-weight:300; }
-  .pilar-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.2rem; }
-  .pilar-tag { font-size:.72rem; font-weight:500; color:#3d1040; background:rgba(61,16,64,.07); padding:.2rem .7rem; border-radius:100px; }
-  .pilar-card.featured { background:#3d1040; border-color:#3d1040; }
-  .pilar-card.featured .pilar-icon { background:rgba(212,175,55,.15); }
-  .pilar-card.featured h3 { color:#fff; }
-  .pilar-card.featured p { color:rgba(255,255,255,.65); }
-  .pilar-card.featured .pilar-tag { background:rgba(255,255,255,.1); color:rgba(255,255,255,.8); }
-  .pilar-card.featured .pilar-num { color:var(--oro); }
+/* ─── PRODUCTO: RESTAURANTES ─── */
+#erp{padding:3rem 4rem 6rem;}
+.producto-wrapper{max-width:1200px;margin:0 auto;}
+.producto-label-bar{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+.producto-badge{display:inline-flex;align-items:center;gap:.6rem;background:var(--morado);color:#fff;padding:.5rem 1.4rem;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.producto-badge .dot{width:8px;height:8px;background:var(--oro);border-radius:50%;}
+.producto-divider-line{flex:1;height:1px;background:linear-gradient(to right,rgba(61,16,64,.2),transparent);}
 
-  /* PROBLEMA */
-  #problema { padding:6rem 4rem; background:#3d1040; position:relative; overflow:hidden; }
-  #problema::before { content:''; position:absolute; top:-100px; right:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(212,175,55,.1) 0%,transparent 70%); pointer-events:none; }
-  .problema-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
-  .problema-layout .section-title { color:#fff; }
-  .problema-layout .section-sub { color:rgba(255,255,255,.6); }
-  .problema-layout .section-eyebrow { color:var(--oro); }
-  .problema-stats { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
-  .ps-card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:1.6rem; text-align:center; transition:background .2s; }
-  .ps-card:hover { background:rgba(255,255,255,.1); }
-  .ps-card .ps-num { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--oro); display:block; line-height:1; }
-  .ps-card .ps-label { font-size:.8rem; color:rgba(255,255,255,.6); margin-top:.4rem; line-height:1.4; font-weight:300; }
+.erp-hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem;}
+.erp-copy .section-eyebrow{text-align:left;}
+.erp-copy .section-title{font-size:clamp(1.8rem,3vw,2.5rem);}
+.erp-copy p{font-size:.97rem;color:#666;line-height:1.75;font-weight:300;margin-bottom:1.4rem;}
+.erp-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.5rem;}
 
-  /* CARACTERÍSTICAS */
-  #caracteristicas { padding:6rem 4rem; max-width:1200px; margin:0 auto; }
-  .features-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
-  .feat { display:flex; gap:1rem; align-items:flex-start; padding:1.6rem; border-radius:16px; background:#fff; border:1px solid rgba(0,0,0,.06); transition:box-shadow .2s; }
-  .feat:hover { box-shadow:0 8px 30px rgba(61,16,64,.08); }
-  .feat-icon { font-size:1.5rem; flex-shrink:0; width:44px; height:44px; background:rgba(61,16,64,.06); border-radius:10px; display:flex; align-items:center; justify-content:center; }
-  .feat-body h4 { font-size:.95rem; font-weight:600; color:#3d1040; margin-bottom:.3rem; }
-  .feat-body p { font-size:.83rem; color:#777; line-height:1.55; font-weight:300; }
+.btn-primary-dark{background:var(--morado);color:#fff;padding:.9rem 2.2rem;border-radius:100px;font-size:.95rem;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 6px 20px rgba(61,16,64,.2);}
+.btn-primary-dark:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(61,16,64,.3);}
+.btn-ghost-dark{background:transparent;color:var(--morado);padding:.9rem 2.2rem;border-radius:100px;font-size:.95rem;font-weight:700;text-decoration:none;border:2px solid rgba(61,16,64,.3);transition:all .2s;}
+.btn-ghost-dark:hover{border-color:var(--morado);background:rgba(61,16,64,.05);}
 
-  /* CTA MID */
-  #cta-mid { padding:6rem 4rem; background:linear-gradient(135deg,#3d1040 0%,#5D2A5B 100%); text-align:center; position:relative; overflow:hidden; }
-  #cta-mid::after { content:''; position:absolute; bottom:-60px; left:50%; transform:translateX(-50%); width:600px; height:200px; border-radius:50%; background:rgba(212,175,55,.08); filter:blur(40px); }
-  #cta-mid h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); color:#fff; font-weight:800; max-width:700px; margin:0 auto 1rem; line-height:1.2; }
-  #cta-mid p { color:rgba(255,255,255,.65); font-size:1.05rem; max-width:500px; margin:0 auto 2.5rem; font-weight:300; }
-  .cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-  .btn-gold { background:var(--oro); color:#fff; padding:1rem 2.4rem; border-radius:100px; font-size:.95rem; font-weight:700; text-decoration:none; transition:transform .2s,box-shadow .2s; box-shadow:0 6px 30px rgba(212,175,55,.3); }
-  .btn-gold:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(212,175,55,.4); }
-  .btn-outline-white { background:transparent; color:#fff; padding:1rem 2.4rem; border-radius:100px; font-size:.95rem; font-weight:600; text-decoration:none; border:2px solid rgba(255,255,255,.3); transition:border-color .2s,background .2s; }
-  .btn-outline-white:hover { border-color:rgba(255,255,255,.7); background:rgba(255,255,255,.07); }
+.erp-visual{background:var(--morado);border-radius:24px;padding:2.4rem;position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(61,16,64,.15);}
+.erp-visual::before{content:'';position:absolute;top:-80px;right:-80px;width:260px;height:260px;border-radius:50%;background:rgba(212,175,55,.08);}
+.ev-label{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.2rem;}
+.ev-stat-row{display:flex;gap:1rem;margin-bottom:1rem;}
+.ev-stat{background:rgba(255,255,255,.07);border-radius:12px;padding:1rem 1.2rem;flex:1;border:1px solid rgba(255,255,255,.08);}
+.ev-stat .sv{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--oro);display:block;}
+.ev-stat .sl{font-size:.72rem;color:rgba(255,255,255,.5);font-weight:300;}
+.ev-channel{display:flex;align-items:center;justify-content:space-between;padding:.7rem .9rem;background:rgba(255,255,255,.05);border-radius:10px;margin-bottom:.5rem;border:1px solid rgba(255,255,255,.06);}
+.ev-channel span{font-size:.8rem;color:rgba(255,255,255,.75);}
+.ev-channel .badge-live{font-size:.65rem;font-weight:700;background:rgba(37,211,102,.15);color:#25D366;padding:.15rem .6rem;border-radius:100px;letter-spacing:.05em;}
+.ev-suggestion{margin-top:1.2rem;padding:.9rem 1rem;background:rgba(212,175,55,.1);border-left:3px solid var(--oro);border-radius:0 8px 8px 0;}
+.ev-suggestion p{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;}
+.ev-suggestion strong{color:var(--oro);}
 
-  /* IA */
-  #ia { padding:6rem 4rem; background:var(--crema); }
-  .ia-layout { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
-  .ia-visual { background:#fff; border-radius:24px; padding:2.4rem; box-shadow:0 20px 60px rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.06); }
-  .ia-header { display:flex; align-items:center; gap:.8rem; margin-bottom:1.8rem; }
-  .ia-dot { width:10px; height:10px; border-radius:50%; }
-  .ia-title-bar { font-size:.78rem; font-weight:600; letter-spacing:.05em; color:#888; text-transform:uppercase; }
-  .ia-metric { display:flex; align-items:center; justify-content:space-between; padding:.9rem 1rem; background:rgba(61,16,64,.04); border-radius:12px; margin-bottom:.6rem; }
-  .ia-metric-label { font-size:.85rem; color:#555; font-weight:400; }
-  .ia-metric-value { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:#3d1040; }
-  .ia-metric-badge { font-size:.72rem; font-weight:600; padding:.15rem .6rem; border-radius:100px; }
-  .ia-metric-badge.up { background:rgba(37,211,102,.12); color:#1a9e4a; }
-  .ia-metric-badge.warn { background:rgba(212,175,55,.15); color:#8b6914; }
-  .ia-suggestion { margin-top:1.2rem; padding:1rem; background:rgba(61,16,64,.04); border-left:3px solid var(--oro); border-radius:0 8px 8px 0; }
-  .ia-suggestion p { font-size:.83rem; color:#555; line-height:1.55; font-weight:300; }
-  .ia-suggestion strong { color:#3d1040; font-weight:600; }
-  .ia-content h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.4rem); font-weight:800; color:#3d1040; line-height:1.18; margin-bottom:1rem; }
-  .ia-content p { font-size:.95rem; color:#666; line-height:1.7; font-weight:300; margin-bottom:1.5rem; }
-  .ia-list { list-style:none; }
-  .ia-list li { display:flex; gap:.8rem; align-items:flex-start; font-size:.9rem; color:#555; font-weight:300; line-height:1.55; margin-bottom:.8rem; }
-  .ia-list li::before { content:'✦'; color:var(--oro); font-size:.7rem; margin-top:.3rem; flex-shrink:0; }
+/* Pilares ERP */
+.pilares-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-bottom:3rem;}
+.pilar-card{background:#fff;border-radius:18px;padding:2rem;border:1px solid rgba(0,0,0,.06);position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+.pilar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--morado),var(--oro));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.pilar-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.09);}
+.pilar-card:hover::before{transform:scaleX(1);}
+.pilar-card.featured{background:var(--morado);}
+.pilar-card.featured h3{color:#fff;}
+.pilar-card.featured p{color:rgba(255,255,255,.6);}
+.pilar-card.featured .pilar-num{color:var(--oro);}
+.pilar-card.featured .ptag{background:rgba(255,255,255,.1);color:rgba(255,255,255,.75);}
+.pilar-icon{font-size:1.4rem;width:48px;height:48px;background:rgba(61,16,64,.07);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;}
+.pilar-card.featured .pilar-icon{background:rgba(212,175,55,.15);}
+.pilar-num{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin-bottom:.4rem;}
+.pilar-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--morado);margin-bottom:.6rem;line-height:1.3;}
+.pilar-card p{font-size:.84rem;color:#666;line-height:1.6;font-weight:300;}
+.pilar-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem;}
+.ptag{font-size:.68rem;font-weight:500;color:var(--morado);background:rgba(61,16,64,.07);padding:.18rem .65rem;border-radius:100px;}
 
-  /* PORTAL */
-  #portal { padding:5rem 4rem; background:var(--crema); }
-  .portal-inner { max-width:900px; margin:0 auto; background:#fff; border-radius:28px; padding:3.5rem 4rem; display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center; box-shadow:0 20px 60px rgba(61,16,64,.08); border:1px solid rgba(212,175,55,.2); position:relative; overflow:hidden; }
-  .portal-inner::before { content:''; position:absolute; top:0; left:0; width:6px; height:100%; background:linear-gradient(to bottom,#3d1040,var(--oro)); border-radius:28px 0 0 28px; }
-  .portal-text h2 { font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:800; color:#3d1040; margin-bottom:.6rem; line-height:1.2; }
-  .portal-text p { font-size:.95rem; color:#777; font-weight:300; line-height:1.6; }
-  .btn-portal { display:flex; align-items:center; gap:.7rem; background:#3d1040; color:#fff; padding:1rem 2rem; border-radius:100px; font-size:.95rem; font-weight:700; text-decoration:none; white-space:nowrap; transition:transform .2s,box-shadow .2s,background .2s; box-shadow:0 8px 30px rgba(61,16,64,.2); }
-  .btn-portal:hover { background:var(--oro); transform:translateY(-2px); box-shadow:0 12px 36px rgba(212,175,55,.3); }
-  .btn-portal svg { width:18px; height:18px; transition:transform .2s; }
-  .btn-portal:hover svg { transform:translateX(3px); }
+/* Features ERP */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.feat{display:flex;gap:.9rem;align-items:flex-start;padding:1.4rem;border-radius:14px;background:#fff;border:1px solid rgba(0,0,0,.06);transition:box-shadow .2s;}
+.feat:hover{box-shadow:0 6px 24px rgba(61,16,64,.07);}
+.feat-icon{font-size:1.3rem;flex-shrink:0;width:42px;height:42px;background:rgba(61,16,64,.06);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.feat-body h4{font-size:.9rem;font-weight:600;color:var(--morado);margin-bottom:.25rem;}
+.feat-body p{font-size:.8rem;color:#777;line-height:1.55;font-weight:300;}
 
-  /* FOOTER */
-  footer { background:#1a0820; color:rgba(255,255,255,.7); padding:4rem 4rem 2rem; }
-  .footer-grid { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:3rem; max-width:1200px; margin:0 auto 3rem; }
-  .footer-brand p { font-size:.88rem; line-height:1.7; font-weight:300; margin-top:.8rem; color:rgba(255,255,255,.5); }
-  .footer-col h4 { font-size:.8rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:1rem; }
-  .footer-col ul { list-style:none; }
-  .footer-col ul li { margin-bottom:.5rem; font-size:.88rem; font-weight:300; }
-  .footer-col ul a { color:rgba(255,255,255,.6); text-decoration:none; transition:color .2s; }
-  .footer-col ul a:hover { color:var(--oro); }
-  .footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; max-width:1200px; margin:0 auto; font-size:.8rem; color:rgba(255,255,255,.3); }
+/* ─── DIVISOR ENTRE PRODUCTOS ─── */
+.products-divider{background:var(--morado);padding:5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.products-divider::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(212,175,55,.08),transparent);}
+.products-divider h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;font-weight:800;position:relative;z-index:1;margin-bottom:.6rem;}
+.products-divider p{color:rgba(255,255,255,.6);font-size:.95rem;position:relative;z-index:1;}
 
-  /* WHATSAPP FLOAT */
-  .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:200; width:58px; height:58px; background:var(--whatsapp); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(37,211,102,.4); text-decoration:none; transition:transform .2s,box-shadow .2s; animation:pulse-wa 3s ease-in-out infinite; }
-  .wa-float:hover { transform:scale(1.1); box-shadow:0 10px 36px rgba(37,211,102,.5); animation:none; }
-  .wa-float svg { width:28px; height:28px; }
+/* ─── PRODUCTO: COMEDORES ─── */
+#comedores{padding:3rem 4rem 6rem;background:#fff;}
+.comedores-hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:4rem;}
+.comedores-visual{order:-1;}
+.cv-card{background:var(--crema);border-radius:20px;padding:2rem;border:1px solid rgba(61,16,64,.08);}
+.cv-header{display:flex;align-items:center;gap:.7rem;margin-bottom:1.5rem;}
+.cv-dot{width:10px;height:10px;border-radius:50%;}
+.cv-title{font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#999;}
+.cv-flow{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.2rem;}
+.cv-step{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem;background:#fff;border-radius:10px;border:1px solid rgba(0,0,0,.06);position:relative;}
+.cv-step-num{width:26px;height:26px;background:var(--morado);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0;}
+.cv-step-text{font-size:.82rem;color:var(--texto);font-weight:400;}
+.cv-step-badge{margin-left:auto;font-size:.65rem;font-weight:600;padding:.15rem .55rem;border-radius:100px;}
+.badge-green{background:rgba(37,211,102,.12);color:#1a9e4a;}
+.badge-gold{background:rgba(212,175,55,.15);color:#8b6914;}
+.badge-blue{background:rgba(61,16,64,.1);color:var(--morado);}
+.cv-connector{width:1px;height:14px;background:rgba(61,16,64,.15);margin-left:22px;}
+.cv-stat-bar{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-top:1rem;}
+.cv-stat{text-align:center;padding:.8rem;background:var(--morado);border-radius:10px;}
+.cv-stat .sv{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--oro);display:block;}
+.cv-stat .sl{font-size:.68rem;color:rgba(255,255,255,.55);font-weight:300;}
 
-  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
-  @keyframes pulse-wa { 0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)} 50%{box-shadow:0 6px 36px rgba(37,211,102,.65)} }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease,transform .6s ease; }
-  .reveal.visible { opacity:1; transform:translateY(0); }
+/* Ventajas comedores */
+.comedores-ventajas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-bottom:3rem;}
+.vc-card{padding:1.8rem;border-radius:16px;border:1px solid rgba(61,16,64,.1);background:var(--crema);transition:transform .2s,box-shadow .2s;}
+.vc-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(61,16,64,.08);}
+.vc-icon{font-size:1.6rem;margin-bottom:.9rem;}
+.vc-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--morado);margin-bottom:.5rem;}
+.vc-card p{font-size:.83rem;color:#666;line-height:1.6;font-weight:300;}
 
-  @media(max-width:900px){
-    nav { padding:1rem 2rem; }
-    nav ul { display:none; }
-    #hero { grid-template-columns:1fr; padding:7rem 2rem 3rem; }
-    .hero-visual { display:none; }
-    .nosotros-layout,.problema-layout,.ia-layout { grid-template-columns:1fr; gap:2.5rem; }
-    .features-grid { grid-template-columns:1fr; }
-    .footer-grid { grid-template-columns:1fr 1fr; }
-    .stats-bar { padding:2.5rem 2rem; }
-    #pilares,#problema,#caracteristicas,#ia,#cta-mid,#nosotros,#portal { padding:4rem 2rem; }
-    footer { padding:3rem 2rem 1.5rem; }
-    .footer-bottom { flex-direction:column; gap:1rem; text-align:center; }
-    .portal-inner { grid-template-columns:1fr; text-align:center; padding:2.5rem 2rem; }
-    .nosotros-values { grid-template-columns:1fr; }
-  }
+/* Roles en comedores */
+.roles-section{background:linear-gradient(135deg, var(--morado) 0%, var(--morado-sec) 100%);border-radius:24px;padding:3rem;margin-bottom:3rem;}
+.roles-section h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;font-weight:800;margin-bottom:.5rem;}
+.roles-section .rs-sub{font-size:.9rem;color:rgba(255,255,255,.6);margin-bottom:2rem;font-weight:300;}
+.roles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.role-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1.4rem;text-align:center;transition:background .2s;}
+.role-card:hover{background:rgba(255,255,255,.12);}
+.role-icon{font-size:2rem;margin-bottom:.6rem;}
+.role-card h4{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.3rem;}
+.role-card p{font-size:.75rem;color:rgba(255,255,255,.5);line-height:1.45;font-weight:300;}
+
+/* ─── CTA FINAL ─── */
+#cta{padding:7rem 4rem;background:linear-gradient(135deg,var(--morado) 0%,var(--morado-sec) 100%);text-align:center;position:relative;overflow:hidden;}
+#cta::after{content:'';position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:700px;height:300px;border-radius:50%;background:rgba(212,175,55,.06);filter:blur(60px);}
+#cta h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);color:#fff;font-weight:900;max-width:680px;margin:0 auto 1rem;line-height:1.15;position:relative;z-index:1;}
+#cta p{color:rgba(255,255,255,.6);font-size:1.05rem;max-width:480px;margin:0 auto 2.8rem;font-weight:300;position:relative;z-index:1;}
+.cta-cards{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+.cta-product-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:2rem 2.4rem;max-width:300px;text-align:left;transition:background .2s,transform .2s;}
+.cta-product-card:hover{background:rgba(255,255,255,.12);transform:translateY(-3px); border-color:var(--oro);}
+.cta-product-card .cp-icon{font-size:2rem;margin-bottom:1rem;}
+.cta-product-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.cta-product-card p{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.55;font-weight:300;margin-bottom:1.4rem;}
+.btn-gold{display:inline-block;background:var(--oro);color:#fff;padding:.75rem 1.8rem;border-radius:100px;font-size:.88rem;font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,175,55,.4);}
+
+/* ─── FOOTER CON LEGALES ─── */
+footer{background:#1a0820;color:rgba(255,255,255,.7);padding:5rem 4rem 2rem;}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto 3rem;}
+.footer-brand p{font-size:.9rem;line-height:1.7;font-weight:300;margin-top:1rem;color:rgba(255,255,255,.5);}
+.footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--oro);margin-bottom:1.2rem;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:.8rem;font-size:.9rem;font-weight:300;}
+.footer-col ul a{color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;}
+.footer-col ul a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;font-size:.85rem;color:rgba(255,255,255,.4); flex-wrap: wrap; gap: 1rem;}
+.footer-links {display: flex; gap: 1.5rem;}
+.footer-links a {color:rgba(255,255,255,.4); text-decoration: none; transition: color 0.2s;}
+.footer-links a:hover {color: var(--oro);}
+
+/* ─── MODAL "ACCEDER AL PORTAL" ─── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(26,8,32,0.8);
+  backdrop-filter: blur(8px); z-index: 1000;
+  display: flex; justify-content: center; align-items: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+.modal-overlay.active {opacity: 1; pointer-events: auto;}
+.modal-box {
+  background: var(--crema); border-radius: 24px; padding: 3.5rem;
+  max-width: 750px; width: 100%; position: relative;
+  transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4); border: 1px solid rgba(212,175,55,0.3);
+}
+.modal-overlay.active .modal-box {transform: translateY(0);}
+.modal-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  background: rgba(61,16,64,0.05); border: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  cursor: pointer; font-size: 1.2rem; display: flex;
+  align-items: center; justify-content: center; color: var(--morado);
+  transition: all 0.2s;
+}
+.modal-close:hover {background: var(--morado); color: #fff;}
+.modal-header {text-align: center; margin-bottom: 2.5rem;}
+.modal-header h3 {font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--morado); font-weight: 900;}
+.modal-header p {font-size: 1rem; color: #555; margin-top: 0.5rem; font-weight: 300;}
+.modal-options {display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;}
+.portal-card {
+  background: #fff; border: 2px solid rgba(61,16,64,0.08); border-radius: 16px;
+  padding: 2.5rem 1.5rem; text-align: center; cursor: pointer;
+  transition: all 0.2s ease; text-decoration: none; display: block;
+}
+.portal-card:hover {
+  border-color: var(--oro); box-shadow: 0 15px 35px rgba(212,175,55,0.15); 
+  transform: translateY(-4px);
+}
+.portal-icon {font-size: 2.8rem; margin-bottom: 1.2rem; display: block;}
+.portal-card h4 {font-size: 1.2rem; color: var(--morado); margin-bottom: 0.5rem; font-weight: 700;}
+.portal-card p {font-size: 0.9rem; color: #666; font-weight: 300; line-height: 1.5;}
+
+/* ─── WHATSAPP ─── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:300;width:56px;height:56px;background:var(--whatsapp);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.4);text-decoration:none;transition:transform .2s,box-shadow .2s;animation:pulse-wa 3s ease-in-out infinite;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 10px 36px rgba(37,211,102,.5);animation:none;}
+.wa-float svg{width:26px;height:26px;}
+
+/* ─── ANIMACIONES ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes pulse-wa{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.4)}50%{box-shadow:0 6px 36px rgba(37,211,102,.65)}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  nav{padding:1rem 1.5rem;}
+  nav.scrolled{padding:1rem 1.5rem;}
+  nav ul{display:none;}
+  #hero{padding:9rem 1.5rem 5rem;}
+  .erp-hero,.comedores-hero,.nosotros-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .comedores-visual{order:0;}
+  #nosotros,#erp,#comedores,#productos,#cta{padding:4rem 1.5rem;}
+  .stats-bar{padding:2rem 1.5rem;}
+  .features-grid{grid-template-columns:1fr;}
+  .roles-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom{flex-direction:column;gap:.8rem;text-align:center;}
+  .products-divider{padding:3rem 1.5rem;}
+  .values-grid{grid-template-columns:1fr;}
+  .cta-cards{flex-direction:column;align-items:center;}
+  .modal-box {padding: 2.5rem 1.5rem;}
+  .modal-options {grid-template-columns: 1fr;}
+}
 </style>
 </head>
 <body>
@@ -230,307 +306,445 @@
 <!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">
-    <img src="./images/logo_morado.png" alt="Meyi Soft Logo"  height="54">
-    <!-- <span>Meyi Soft</span> -->
+    <img src="/images/logo_morado.png" alt="logo" width="156px">
   </div>
   <ul>
     <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#pilares">Soluciones</a></li>
-    <li><a href="#caracteristicas">Características</a></li>
-    <li><a href="#ia">IA</a></li>
-    <li><a href="#portal" class="nav-portal">Acceder al Portal</a></li>
-    <li><a href="#cta-mid" class="nav-cta">Demo</a></li>
+    <li><a href="#erp">ERP Restaurantes</a></li>
+    <li><a href="#comedores">Comedores</a></li>
+    <!-- Botón Modal en vez de Empresa -->
+    <li><button class="nav-portal-btn" onclick="openModal()">Acceder al Portal</button></li>
+    <li><a href="#cta" class="nav-cta">Demo</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO CON FONDO DIFUMINADO -->
 <section id="hero">
+  <!-- Imagen de fondo -->
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+
   <div class="hero-content">
-    <div class="hero-badge">Ecosistema Gastronómico Omnicanal</div>
-    <h1 class="hero-title">Gestiona tu restaurante<br>desde un solo <em>núcleo</em></h1>
-    <p class="hero-sub">Elimina el 30% de comisiones de terceros, centraliza todos tus canales en tiempo real y toma decisiones con Inteligencia Artificial. Todo en una sola plataforma.</p>
+    <div class="hero-eyebrow">Tecnología de Grado Empresarial</div>
+    <h1 class="hero-title">Software diseñado para<br>cada tipo de <em>servicio de alimentos</em></h1>
+    <p class="hero-sub">Desde el restaurante boutique hasta el comedor industrial de miles de empleados. Meyi Soft tiene una solución construida específicamente para tu operación.</p>
     <div class="hero-actions">
-      <a href="#cta-mid" class="btn-primary">Solicitar Demo Gratuita</a>
-      <a href="#pilares" class="btn-secondary">Ver Soluciones</a>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="hero-card-stack">
-      <div class="hcard hcard-float">
-        <div class="float-icon">🍽️</div>
-        <p>Pedido enviado</p>
-        <span>Mesa 7 · hace 2 seg</span>
-      </div>
-      <div class="hcard hcard-main">
-        <div class="card-label">Panel de Control · Hoy</div>
-        <h3>Ventas en tiempo real</h3>
-        <p>Todos tus canales sincronizados: POS, App, WhatsApp y Web.</p>
-        <div class="card-stat">
-          <span class="stat-num">$0</span>
-          <span class="stat-label">comisiones<br>a terceros</span>
-        </div>
-      </div>
-      <div class="hcard hcard-accent">
-        <p>Crecimiento mensual</p>
-        <div class="mini-bars">
-          <div class="mini-bar" style="height:30%"></div>
-          <div class="mini-bar" style="height:50%"></div>
-          <div class="mini-bar" style="height:45%"></div>
-          <div class="mini-bar" style="height:70%"></div>
-          <div class="mini-bar" style="height:60%"></div>
-          <div class="mini-bar" style="height:90%"></div>
-          <div class="mini-bar" style="height:80%"></div>
-        </div>
-      </div>
+      <a href="#erp" class="btn-primary">Ver ERP Restaurantes</a>
+      <a href="#comedores" class="btn-ghost">Ver Comedores</a>
     </div>
   </div>
 </section>
 
-<!-- QUIÉNES SOMOS -->
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="num">2</span><div class="desc">Soluciones especializadas<br>para el sector alimenticio</div></div>
+  <div class="stat-item"><span class="num">30%</span><div class="desc">Comisiones eliminadas<br>de apps de terceros</div></div>
+  <div class="stat-item"><span class="num">100%</span><div class="desc">Canales sincronizados<br>en tiempo real</div></div>
+  <div class="stat-item"><span class="num">IA</span><div class="desc">Inteligencia integrada<br>en cada producto</div></div>
+</div>
+
+<!-- NOSOTROS -->
 <section id="nosotros">
   <div class="nosotros-layout">
     <div class="nosotros-content reveal">
       <span class="section-eyebrow">Quiénes Somos</span>
-      <h2 class="section-title">Tecnología gastronómica nacida en el sureste mexicano</h2>
-      <p>Meyi Soft es una empresa de desarrollo tecnológico especializada en la industria restaurantera. Nacimos en Mérida, Yucatán, con un objetivo claro: darle a los negocios de alimentos las herramientas digitales que merecen, sin depender de plataformas extranjeras que se quedan con sus ganancias.</p>
-      <p>Entendemos el ritmo del restaurante moderno porque vivimos en él. Desde la taquería de barrio hasta el resort turístico, diseñamos soluciones que se adaptan a cada escala de negocio con tecnología de grado empresarial y soporte humano real.</p>
-      <div class="nosotros-values">
-        <div class="nv-card"><h4>🎯 Enfoque local</h4><p>Desarrollado para el mercado mexicano: CFDI 4.0, soporte en español y precios en MXN.</p></div>
-        <div class="nv-card"><h4>⚡ Innovación continua</h4><p>Actualizaciones constantes impulsadas por IA y retroalimentación de nuestros clientes.</p></div>
-        <div class="nv-card"><h4>🤝 Soporte cercano</h4><p>No somos un call center. Somos un equipo que responde por WhatsApp y entiende tu negocio.</p></div>
-        <div class="nv-card"><h4>🔓 Sin dependencias</h4><p>Tu tecnología, tus datos, tus clientes. Nunca más rehén de apps de terceros.</p></div>
+      <h2 class="section-title">Software nacido en el sureste mexicano, para el sector de alimentos</h2>
+      <p>Meyi Soft es una empresa de desarrollo tecnológico especializada en la industria de servicios de alimentos. Nacimos en Mérida, Yucatán, con una misión clara: crear el software que el sector gastronómico mexicano merece, sin comisiones excesivas ni dependencias de plataformas extranjeras.</p>
+      <p>Entendemos que un restaurante y un comedor industrial son mundos distintos. Por eso construimos soluciones diseñadas específicamente para cada operación, con tecnología de grado empresarial y soporte humano real.</p>
+      <div class="values-grid">
+        <div class="val-card"><h4>🎯 Enfoque local</h4><p>CFDI 4.0, soporte en español, precios en MXN y equipo en Mérida.</p></div>
+        <div class="val-card"><h4>⚡ Innovación continua</h4><p>Actualizaciones impulsadas por IA y retroalimentación de clientes.</p></div>
+        <div class="val-card"><h4>🤝 Soporte cercano</h4><p>Un equipo real que responde por WhatsApp y entiende tu negocio.</p></div>
+        <div class="val-card"><h4>🔓 Sin dependencias</h4><p>Tu tecnología, tus datos, tus clientes. Siempre.</p></div>
       </div>
     </div>
-    <div class="nosotros-visual reveal">
+    <div class="reveal">
       <div class="vision-card">
-        <span class="vision-eyebrow">Nuestra Visión</span>
-        <h3>Ser el sistema operativo de cada restaurante en México y Latinoamérica</h3>
-        <p>Imaginamos un futuro donde ningún restaurante, desde la taquería más pequeña hasta la cadena más grande, tenga que pagar comisiones excesivas a intermediarios tecnológicos ni operar con sistemas fragmentados.</p>
+        <span class="section-eyebrow" style="color:var(--oro);">Nuestra Visión</span>
+        <h3>Ser el sistema operativo de cada servicio de alimentos en México y Latinoamérica</h3>
+        <p>Ningún restaurante ni comedor debería pagar comisiones excesivas a intermediarios ni operar con sistemas fragmentados que no se comunican.</p>
         <div class="vision-divider"></div>
         <span class="mision-label">Nuestra Misión</span>
-        <p>Centralizar cada proceso del restaurante en una sola plataforma en tiempo real, devolviéndole al dueño el control total de su operación, sus datos y sus márgenes de ganancia, con tecnología accesible y soporte humano genuino.</p>
+        <p>Centralizar cada proceso en una sola plataforma, devolviendo al operador el control total de su operación, sus datos y sus márgenes de ganancia.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<div class="stats-bar">
-  <div class="stat-item"><span class="num">30%</span><div class="desc">Comisiones eliminadas<br>de apps de terceros</div></div>
-  <div class="stat-item"><span class="num">5</span><div class="desc">Pilares operativos<br>integrados</div></div>
-  <div class="stat-item"><span class="num">100%</span><div class="desc">Canales sincronizados<br>en tiempo real</div></div>
-  <div class="stat-item"><span class="num">IA</span><div class="desc">Análisis y proyecciones<br>automáticas</div></div>
+<!-- PRODUCTOS HEADER -->
+<section id="productos">
+  <div class="productos-header reveal">
+    <span class="section-eyebrow">Nuestras Soluciones</span>
+    <h2 class="section-title">Un producto para cada tipo de operación</h2>
+    <p class="section-sub">Dos sistemas construidos desde cero para resolver los desafíos específicos de cada modelo de servicio de alimentos.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PRODUCTO 1: ERP RESTAURANTES -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="erp">
+  <div class="producto-wrapper">
+
+    <div class="producto-label-bar reveal">
+      <div class="producto-badge"><div class="dot"></div>Solución 01 — ERP Restaurantes</div>
+      <div class="producto-divider-line"></div>
+    </div>
+
+    <!-- Hero ERP -->
+    <div class="erp-hero">
+      <div class="erp-copy reveal">
+        <span class="section-eyebrow">Ecosistema Gastronómico Omnicanal</span>
+        <h2 class="section-title">Gestiona tu restaurante desde un solo núcleo</h2>
+        <p>Elimina el 30% de comisiones de terceros, centraliza todos tus canales de venta en tiempo real y toma decisiones con Inteligencia Artificial. Todo desde una sola plataforma construida para el restaurante moderno.</p>
+        <p>App móvil white-label, POS web y móvil, KDS para cocina, inventarios automáticos, facturación CFDI 4.0 y un copiloto de IA que analiza tu negocio cada semana.</p>
+        <div class="erp-actions">
+          <a href="#cta" class="btn-primary-dark">Solicitar Demo</a>
+          <a href="#cta" class="btn-ghost-dark">Ver Precios</a>
+        </div>
+      </div>
+      <div class="erp-visual reveal">
+        <div class="ev-label">Panel de Control · Tiempo Real</div>
+        <div class="ev-stat-row">
+          <div class="ev-stat"><span class="sv">$0</span><span class="sl">comisiones a terceros</span></div>
+          <div class="ev-stat"><span class="sv">+18%</span><span class="sl">ventas vs mes anterior</span></div>
+        </div>
+        <div class="ev-channel"><span>📱 App Propia</span><span class="badge-live">EN VIVO</span></div>
+        <div class="ev-channel"><span>💬 WhatsApp API</span><span class="badge-live">EN VIVO</span></div>
+        <div class="ev-channel"><span>🌐 Portal Web</span><span class="badge-live">EN VIVO</span></div>
+        <div class="ev-channel"><span>🖥️ POS Físico</span><span class="badge-live">EN VIVO</span></div>
+        <div class="ev-suggestion">
+          <p>💡 <strong>IA Meyi:</strong> Cochinita Pibil lidera ventas Jue-Dom. Sugiero activar promo de "para llevar" en horario pico 1-3 PM.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Pilares -->
+    <div class="section-eyebrow reveal" style="text-align:center;margin-bottom:.6rem;">5 Pilares Operativos</div>
+    <h3 class="section-title reveal" style="text-align:center;font-size:1.8rem;margin-bottom:2rem;">Una plataforma para cada rol de tu restaurante</h3>
+    <div class="pilares-grid">
+      <div class="pilar-card reveal">
+        <div class="pilar-icon">📱</div>
+        <div class="pilar-num">Pilar 01</div>
+        <h3>Ventas Directas Omnicanal</h3>
+        <p>App white-label, portal web, WhatsApp y menú QR. El restaurante recupera el control de sus clientes sin pagar comisiones.</p>
+        <div class="pilar-tags"><span class="ptag">iOS & Android</span><span class="ptag">WhatsApp API</span><span class="ptag">Menú QR</span></div>
+      </div>
+      <div class="pilar-card reveal">
+        <div class="pilar-icon">🖥️</div>
+        <div class="pilar-num">Pilar 02</div>
+        <h3>Operación de Piso</h3>
+        <p>POS omnicanal web y móvil con app para meseros. Comandas instantáneas a cocina y mapa de mesas en tiempo real.</p>
+        <div class="pilar-tags"><span class="ptag">POS Web</span><span class="ptag">POS Móvil</span><span class="ptag">Comandero</span></div>
+      </div>
+      <div class="pilar-card featured reveal">
+        <div class="pilar-icon">👨‍🍳</div>
+        <div class="pilar-num">Pilar 03</div>
+        <h3>Control de Cocina KDS</h3>
+        <p>Pantallas interactivas con gestor Kanban que organiza y prioriza comandas por canal: local, domicilio o para llevar.</p>
+        <div class="pilar-tags"><span class="ptag">KDS Pantallas</span><span class="ptag">Kanban</span><span class="ptag">Sin papel</span></div>
+      </div>
+      <div class="pilar-card reveal">
+        <div class="pilar-icon">📊</div>
+        <div class="pilar-num">Pilar 04</div>
+        <h3>Administración y Finanzas</h3>
+        <p>Caja unificada, inventarios automáticos, roles de personal y facturación CFDI 4.0 con QR en el ticket del cliente.</p>
+        <div class="pilar-tags"><span class="ptag">CFDI 4.0</span><span class="ptag">Inventarios</span><span class="ptag">Roles</span></div>
+      </div>
+      <div class="pilar-card reveal">
+        <div class="pilar-icon">🤖</div>
+        <div class="pilar-num">Pilar 05</div>
+        <h3>Copiloto con IA</h3>
+        <p>Resúmenes semanales, platillos top, horarios pico y proyecciones de inventario generados automáticamente.</p>
+        <div class="pilar-tags"><span class="ptag">Métricas IA</span><span class="ptag">Proyecciones</span><span class="ptag">Rentabilidad</span></div>
+      </div>
+    </div>
+
+    <!-- Features ERP -->
+    <h3 class="section-title reveal" style="font-size:1.6rem;margin-bottom:1.5rem;">Características clave</h3>
+    <div class="features-grid">
+      <div class="feat reveal"><div class="feat-icon">⚡</div><div class="feat-body"><h4>Tiempo Real en la Nube</h4><p>Cada pedido y cambio de menú se refleja al instante en todos los dispositivos.</p></div></div>
+      <div class="feat reveal"><div class="feat-icon">🔐</div><div class="feat-body"><h4>Control de Acceso por Roles</h4><p>Cajeros, meseros, cocineros y admins solo ven lo que les corresponde.</p></div></div>
+      <div class="feat reveal"><div class="feat-icon">📦</div><div class="feat-body"><h4>Inventario Automático</h4><p>Cada platillo vendido descuenta insumos automáticamente. Sin sorpresas.</p></div></div>
+      <div class="feat reveal"><div class="feat-icon">🧾</div><div class="feat-body"><h4>Facturación CFDI 4.0</h4><p>El cliente escanea el QR de su ticket y genera su factura en segundos.</p></div></div>
+      <div class="feat reveal"><div class="feat-icon">🗺️</div><div class="feat-body"><h4>Mapa de Mesas Dinámico</h4><p>Visualiza el estado de cada mesa en tiempo real y asigna pedidos con un toque.</p></div></div>
+      <div class="feat reveal"><div class="feat-icon">💬</div><div class="feat-body"><h4>WhatsApp Nativo</h4><p>Canal de ventas automatizado con la API oficial de WhatsApp Business.</p></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- DIVISOR -->
+<div class="products-divider">
+  <h2>¿Tu operación no es un restaurante tradicional?</h2>
+  <p>Conoce nuestra solución diseñada específicamente para comedores industriales y corporativos.</p>
 </div>
 
-<!-- PILARES -->
-<section id="pilares">
-  <div class="section-header reveal">
-    <span class="section-eyebrow">5 Pilares Operativos</span>
-    <h2 class="section-title">Una plataforma para cada rol de tu restaurante</h2>
-    <p class="section-sub">Desde el comensal hasta el cocinero, cada proceso conectado en una sola base de datos unificada.</p>
-  </div>
-  <div class="pilares-grid">
-    <div class="pilar-card reveal">
-      <div class="pilar-icon">📱</div>
-      <div class="pilar-num">Pilar 01</div>
-      <h3>Ventas Directas Omnicanal</h3>
-      <p>App móvil white-label, portal web, pedidos por WhatsApp y menú QR interactivo. El restaurante recupera el control de sus clientes.</p>
-      <div class="pilar-tags"><span class="pilar-tag">iOS & Android</span><span class="pilar-tag">WhatsApp API</span><span class="pilar-tag">Menú QR</span></div>
-    </div>
-    <div class="pilar-card reveal">
-      <div class="pilar-icon">🖥️</div>
-      <div class="pilar-num">Pilar 02</div>
-      <h3>Operación de Piso</h3>
-      <p>POS omnicanal web y móvil con app para meseros. Comandas instantáneas a cocina y mapa de mesas en tiempo real.</p>
-      <div class="pilar-tags"><span class="pilar-tag">POS Web</span><span class="pilar-tag">POS Móvil</span><span class="pilar-tag">Comandero</span></div>
-    </div>
-    <div class="pilar-card featured reveal">
-      <div class="pilar-icon">👨‍🍳</div>
-      <div class="pilar-num">Pilar 03</div>
-      <h3>Control de Cocina (KDS)</h3>
-      <p>Pantallas interactivas con gestor Kanban que organiza, prioriza y clasifica comandas por canal: local, domicilio o para llevar.</p>
-      <div class="pilar-tags"><span class="pilar-tag">KDS Pantallas</span><span class="pilar-tag">Kanban</span><span class="pilar-tag">Sin papel</span></div>
-    </div>
-    <div class="pilar-card reveal">
-      <div class="pilar-icon">📊</div>
-      <div class="pilar-num">Pilar 04</div>
-      <h3>Administración y Finanzas</h3>
-      <p>Caja unificada, inventarios automáticos, roles de personal y facturación CFDI 4.0 con QR en el ticket del cliente.</p>
-      <div class="pilar-tags"><span class="pilar-tag">CFDI 4.0</span><span class="pilar-tag">Inventarios</span><span class="pilar-tag">Seguridad</span></div>
-    </div>
-    <div class="pilar-card reveal">
-      <div class="pilar-icon">🤖</div>
-      <div class="pilar-num">Pilar 05</div>
-      <h3>Innovación con IA</h3>
-      <p>Copiloto virtual con resúmenes semanales, platillos top, horarios pico y proyecciones de inventario.</p>
-      <div class="pilar-tags"><span class="pilar-tag">Métricas IA</span><span class="pilar-tag">Proyecciones</span><span class="pilar-tag">Rentabilidad</span></div>
-    </div>
-  </div>
-</section>
+<!-- ═══════════════════════════════════════════════ -->
+<!-- PRODUCTO 2: COMEDORES -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="comedores">
+  <div class="producto-wrapper">
 
-<!-- PROBLEMA -->
-<section id="problema">
-  <div class="problema-layout">
-    <div class="reveal">
-      <span class="section-eyebrow">El Problema Real</span>
-      <h2 class="section-title">La fragmentación operativa destruye márgenes</h2>
-      <p class="section-sub">El mayor reto de los restaurantes modernos no es la comida — es la tecnología dispersa, los datos que no se comunican y las comisiones que sangran las ganancias.</p>
+    <div class="producto-label-bar reveal">
+      <div class="producto-badge"><div class="dot"></div>Solución 02 — Meyi Soft Comedores</div>
+      <div class="producto-divider-line"></div>
     </div>
-    <div class="problema-stats reveal">
-      <div class="ps-card"><span class="ps-num">30%</span><div class="ps-label">de tus ventas se van en comisiones de apps de delivery</div></div>
-      <div class="ps-card"><span class="ps-num">∞</span><div class="ps-label">sistemas desconectados que no se hablan entre sí</div></div>
-      <div class="ps-card"><span class="ps-num">0</span><div class="ps-label">datos propios de clientes cuando usas plataformas ajenas</div></div>
-      <div class="ps-card"><span class="ps-num">1</span><div class="ps-label">plataforma para resolver todo con Meyi Soft</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- CARACTERÍSTICAS -->
-<section id="caracteristicas">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Características Clave</span>
-      <h2 class="section-title">Tecnología de grado empresarial para restaurantes</h2>
-    </div>
-    <div class="features-grid">
-      <div class="feat reveal"><div class="feat-icon">⚡</div><div class="feat-body"><h4>Tiempo Real en la Nube</h4><p>Cada pedido, venta o cambio de menú se refleja al instante en todos los dispositivos conectados.</p></div></div>
-      <div class="feat reveal"><div class="feat-icon">🔐</div><div class="feat-body"><h4>Control de Acceso por Roles</h4><p>Cajeros, meseros, cocineros y admins solo ven lo que les corresponde. Prevención de fraudes incluida.</p></div></div>
-      <div class="feat reveal"><div class="feat-icon">📦</div><div class="feat-body"><h4>Inventario Automático</h4><p>Cada platillo vendido descuenta los insumos automáticamente. Nunca más sorpresas de falta de stock.</p></div></div>
-      <div class="feat reveal"><div class="feat-icon">🧾</div><div class="feat-body"><h4>Facturación CFDI 4.0</h4><p>El cliente escanea el QR de su ticket y genera su factura en segundos. Sin carga de trabajo para tu equipo.</p></div></div>
-      <div class="feat reveal"><div class="feat-icon">🗺️</div><div class="feat-body"><h4>Mapa de Mesas Dinámico</h4><p>Visualiza el estado de cada mesa en tiempo real y asigna pedidos con un toque desde el comandero.</p></div></div>
-      <div class="feat reveal"><div class="feat-icon">💬</div><div class="feat-body"><h4>WhatsApp Nativo</h4><p>Canal de ventas automatizado con la API oficial de WhatsApp Business. Órdenes por chat sin comisiones.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA MEDIO -->
-<section id="cta-mid">
-  <h2>¿Listo para recuperar el control de tu restaurante?</h2>
-  <p>Agenda una demo personalizada y descubre cómo Meyi Soft transforma la operación de tu negocio desde el primer día.</p>
-  <div class="cta-buttons">
-    <a href="#" class="btn-gold">Solicitar Demo Gratuita</a>
-    <a href="#ia" class="btn-outline-white">Conocer el Módulo IA</a>
-  </div>
-</section>
-
-<!-- IA -->
-<section id="ia">
-  <div class="ia-layout">
-    <div class="ia-visual reveal">
-      <div class="ia-header">
-        <div class="ia-dot" style="background:#3d1040"></div>
-        <div class="ia-dot" style="background:var(--oro)"></div>
-        <div class="ia-dot" style="background:#5D2A5B"></div>
-        <span class="ia-title-bar">Resumen Semanal IA · Semana 12</span>
+    <!-- Hero Comedores -->
+    <div class="comedores-hero">
+      <div class="comedores-visual reveal">
+        <div class="cv-card">
+          <div class="cv-header">
+            <div class="cv-dot" style="background:var(--morado)"></div>
+            <div class="cv-dot" style="background:var(--oro)"></div>
+            <div class="cv-dot" style="background:var(--morado-sec)"></div>
+            <span class="cv-title">Ciclo de pedido · Comedor Norte</span>
+          </div>
+          <div class="cv-flow">
+            <div class="cv-step">
+              <div class="cv-step-num">1</div>
+              <div class="cv-step-text">Empleado genera pedido desde app</div>
+              <span class="cv-step-badge badge-blue">App</span>
+            </div>
+            <div class="cv-connector"></div>
+            <div class="cv-step">
+              <div class="cv-step-num">2</div>
+              <div class="cv-step-text">Cajero escanea QR y valida consumo</div>
+              <span class="cv-step-badge badge-gold">Caja</span>
+            </div>
+            <div class="cv-connector"></div>
+            <div class="cv-step">
+              <div class="cv-step-num">3</div>
+              <div class="cv-step-text">Cocina prepara y marca listo en KDS</div>
+              <span class="cv-step-badge badge-gold">Cocina</span>
+            </div>
+            <div class="cv-connector"></div>
+            <div class="cv-step">
+              <div class="cv-step-num">4</div>
+              <div class="cv-step-text">Entrega al empleado → descuento a nómina</div>
+              <span class="cv-step-badge badge-green">✓ Entregado</span>
+            </div>
+          </div>
+          <div class="cv-stat-bar">
+            <div class="cv-stat"><span class="sv">0</span><span class="sl">doble consumo</span></div>
+            <div class="cv-stat"><span class="sv">$0</span><span class="sl">efectivo</span></div>
+            <div class="cv-stat"><span class="sv">30s</span><span class="sl">por pedido</span></div>
+          </div>
+        </div>
       </div>
-      <div class="ia-metric"><span class="ia-metric-label">🍜 Platillo más vendido</span><span class="ia-metric-value">Cochinita Pibil</span><span class="ia-metric-badge up">+18%</span></div>
-      <div class="ia-metric"><span class="ia-metric-label">⏰ Horario pico</span><span class="ia-metric-value">1:00 – 3:00 PM</span><span class="ia-metric-badge warn">Jue-Dom</span></div>
-      <div class="ia-metric"><span class="ia-metric-label">📦 Inventario crítico</span><span class="ia-metric-value">Achiote · Limón</span><span class="ia-metric-badge warn">3 días</span></div>
-      <div class="ia-metric"><span class="ia-metric-label">💰 Rentabilidad neta</span><span class="ia-metric-value">$48,320 MXN</span><span class="ia-metric-badge up">+11%</span></div>
-      <div class="ia-suggestion"><p>💡 <strong>Sugerencia IA:</strong> Agrega "Cochinita para llevar" al menú QR del fin de semana. Tu horario pico coincide con alta demanda de pedidos rápidos en turistas.</p></div>
+      <div class="erp-copy reveal">
+        <span class="section-eyebrow">Sistema de Comedor Industrial</span>
+        <h2 class="section-title">Gestión completa de comedores sin efectivo ni filas</h2>
+        <p>Sistema especializado para comedores industriales y corporativos con múltiples plantas, miles de empleados y descuento directo a nómina. Sin efectivo, sin filas, sin abusos.</p>
+        <p>Control de acceso por QR, prevención de doble consumo, KDS para cocina, inventario automático, reportes de merma y gestión por roles. Todo en tiempo real.</p>
+        <div class="erp-actions">
+          <a href="#cta" class="btn-primary-dark">Solicitar Demo</a>
+          <a href="#cta" class="btn-ghost-dark">Ver Precios</a>
+        </div>
+      </div>
     </div>
-    <div class="ia-content reveal">
-      <span class="section-eyebrow">Módulo de Innovación Estratégica</span>
-      <h2>Tu copiloto de negocio con Inteligencia Artificial</h2>
-      <p>El módulo de IA analiza silenciosamente toda tu base de datos operativa y te entrega información accionable cada semana, sin que tengas que pedirla.</p>
-      <ul class="ia-list">
-        <li>Resúmenes semanales automáticos con las métricas más importantes de tu negocio</li>
-        <li>Identificación de platillos estrella y productos de baja rotación para optimizar tu menú</li>
-        <li>Análisis de horarios pico para planificar turnos y stock con precisión</li>
-        <li>Proyecciones de inventario para evitar mermas y faltantes</li>
-        <li>Sugerencias de rentabilidad basadas en patrones reales de tus ventas</li>
-      </ul>
+
+    <!-- Ventajas comedores -->
+    <div class="section-eyebrow reveal" style="margin-bottom:.6rem;">¿Por qué Meyi Soft Comedores?</div>
+    <h3 class="section-title reveal" style="font-size:1.8rem;margin-bottom:2rem;">Diseñado para la operación industrial</h3>
+    <div class="comedores-ventajas">
+      <div class="vc-card reveal">
+        <div class="vc-icon">⚡</div>
+        <h3>Sin filas, sin esperas</h3>
+        <p>El empleado genera su pedido desde su celular antes de llegar. Solo pasa a recoger. Todo el proceso dura menos de 30 segundos.</p>
+      </div>
+      <div class="vc-card reveal">
+        <div class="vc-icon">🔒</div>
+        <h3>Control total de consumo</h3>
+        <p>QR con vigencia por horario, validación de doble consumo y registro completo de quién, cuándo y dónde consumió.</p>
+      </div>
+      <div class="vc-card reveal">
+        <div class="vc-icon">💳</div>
+        <h3>Descuento vía nómina</h3>
+        <p>Integración con el sistema de nómina de tu empresa. Sin manejo de efectivo, sin vales, sin errores de cobro.</p>
+      </div>
+      <div class="vc-card reveal">
+        <div class="vc-icon">🏭</div>
+        <h3>Multi-planta, multi-comedor</h3>
+        <p>Administra decenas de comedores desde un solo panel. Stock independiente por comedor, horarios diferenciados por perfil de empleado.</p>
+      </div>
+      <div class="vc-card reveal">
+        <div class="vc-icon">📊</div>
+        <h3>Reportes y auditoría completa</h3>
+        <p>Consumos por empleado, mermas, cancelaciones, porciones servidas y más. Datos listos para exportar a contabilidad o RH.</p>
+      </div>
+    </div>
+
+    <!-- Roles -->
+    <div class="roles-section reveal">
+      <h3>Una app por rol, un solo sistema</h3>
+      <p class="rs-sub">Cada actor del comedor tiene su interfaz diseñada exactamente para lo que necesita hacer.</p>
+      <div class="roles-grid">
+        <div class="role-card">
+          <div class="role-icon">👤</div>
+          <h4>App Empleado</h4>
+          <p>Login con número + PIN, menú por horario, generación de QR y estado del pedido en tiempo real.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">🧾</div>
+          <h4>Tablet Caja</h4>
+          <p>Escaneo de QR, validación de consumo, venta directa para empleados sin celular y despacho de pedidos.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">👨‍🍳</div>
+          <h4>Tablet Cocina KDS</h4>
+          <p>Vista de pedidos por estado: preparar, listo. Ordenados por hora y clasificados por canal o tipo.</p>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">📊</div>
+          <h4>Panel Administración</h4>
+          <p>Gestión de comedores, horarios, productos, stock, empleados, reportes y configuración completa.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <h2>¿Cuál es tu operación?</h2>
+  <p>Cuéntanos tu caso y te mostramos en vivo cómo Meyi Soft transforma tu servicio de alimentos desde el primer día.</p>
+  <div class="cta-cards">
+    <div class="cta-product-card">
+      <div class="cp-icon">🍽️</div>
+      <h3>ERP Restaurantes</h3>
+      <p>Para restaurantes, cadenas y negocios de comida que quieren eliminar comisiones y centralizar su operación.</p>
+      <a href="https://wa.me/529852026163" class="btn-gold">Quiero una demo</a>
+    </div>
+    <div class="cta-product-card">
+      <div class="cp-icon">🏭</div>
+      <h3>Meyi Soft Comedores</h3>
+      <p>Para empresas industriales y corporativos con comedores, múltiples plantas y manejo de nómina.</p>
+      <a href="https://wa.me/529852026163" class="btn-gold">Quiero una demo</a>
     </div>
   </div>
 </section>
 
-<!-- PORTAL -->
-<section id="portal">
-  <div class="portal-inner reveal">
-    <div class="portal-text">
-      <h2>¿Ya eres cliente de Meyi Soft?</h2>
-      <p>Accede a tu panel de administración, reportes en tiempo real, módulo de facturación y todas las herramientas de tu ecosistema desde un solo lugar.</p>
-    </div>
-    <a href="#" class="btn-portal">
-      Acceder al Portal
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- FOOTER ACTUALIZADO -->
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="nav-logo" style="font-size:1.4rem">Meyi<span style="color:var(--oro)">Soft</span></div>
-      <p>Ecosistema de Gestión Gastronómica Omnicanal. Diseñado para la industria restaurantera moderna de México y Latinoamérica.</p>
+      <div class="nav-logo" style="font-size:1.4rem; color:#fff;">Meyi<span style="color:var(--oro)">Soft</span></div>
+      <p>Software especializado para el sector de servicios de alimentos. Desarrollado con estándares empresariales en Mérida, Yucatán, para México y Latinoamérica.</p>
     </div>
     <div class="footer-col">
-      <h4>Soluciones</h4>
+      <h4>Restaurantes</h4>
       <ul>
         <li><a href="#">Ventas Directas</a></li>
         <li><a href="#">POS Omnicanal</a></li>
         <li><a href="#">Sistema KDS</a></li>
         <li><a href="#">Facturación CFDI</a></li>
-        <li><a href="#">Módulo IA</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Empresa</h4>
+      <h4>Comedores</h4>
       <ul>
-        <li><a href="#nosotros">Quiénes Somos</a></li>
-        <li><a href="#nosotros">Nuestra Visión</a></li>
-        <li><a href="#">Casos de éxito</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="#">App Empleado</a></li>
+        <li><a href="#">Punto de Cobro QR</a></li>
+        <li><a href="#">Integración Nómina</a></li>
+        <li><a href="#">Reportes Avanzados</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Contacto</h4>
       <ul>
-        <li><a href="https://wa.me/529991557878">WhatsApp</a></li>
+        <li><a href="https://wa.me/529852026163">WhatsApp Negocios</a></li>
         <li><a href="mailto:hola@meyisoft.com">hola@meyisoft.com</a></li>
-        <li><a href="#">Mérida, Yucatán</a></li>
+        <li><a href="#">Mérida, Yucatán, MX</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Meyi Soft. Todos los derechos reservados.</span>
-    <span>Hecho con 🍽️ en Mérida, Yucatán</span>
+    <div class="fb-left">
+      <span>© 2025 Meyi Soft. Todos los derechos reservados.</span>
+    </div>
+    <div class="footer-links">
+      <a href="terminos-y-condiciones.html">Términos y Condiciones</a>
+      <a href="privacidad.html">Aviso de Privacidad POS </a>
+      <a href="privacidad.html">Aviso de Privacidad Comedor</a>
+    </div>
+    <div class="fb-right">
+      <span>Hecho con 🍽️ en Mérida, Yucatán</span>
+    </div>
   </div>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/529991557878" class="wa-float" target="_blank" title="Contáctanos por WhatsApp">
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/529852026163" class="wa-float" target="_blank">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
   </svg>
 </a>
 
+<!-- MODAL ACCEDER AL PORTAL -->
+<div class="modal-overlay" id="portalModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <h3>Acceso a Clientes</h3>
+      <p>Selecciona el entorno operativo al que deseas ingresar</p>
+    </div>
+    <div class="modal-options">
+      <!-- Opción 1: Restaurantes -->
+      <a href="URL_PORTAL_RESTAURANTES" class="portal-card">
+        <span class="portal-icon">🍽️</span>
+        <h4>Meyi Soft Restaurantes</h4>
+        <p>Ingresa al ERP, métricas de IA, POS web y facturación.</p>
+      </a>
+      <!-- Opción 2: Comedores -->
+      <a href="URL_PORTAL_COMEDORES" class="portal-card">
+        <span class="portal-icon">🏭</span>
+        <h4>Meyi Soft Comedores</h4>
+        <p>Ingresa a la gestión de empleados, stock y descargas de nómina.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
 <script>
+// --- Navbar Scroll ---
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
 });
 
-const revealEls = document.querySelectorAll('.reveal');
+// --- Animaciones Scroll ---
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
       observer.unobserve(e.target);
     }
   });
-}, { threshold: 0.12 });
-revealEls.forEach(el => observer.observe(el));
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-setTimeout(() => {
-  document.querySelectorAll('.mini-bar').forEach((b, i) => {
-    const heights = [30,50,45,70,60,90,80];
-    b.style.height = heights[i] + '%';
-    b.style.transition = 'height .6s ' + (i * 0.08) + 's ease';
-  });
-}, 800);
+// --- Lógica del Modal "Acceder al Portal" ---
+const modal = document.getElementById('portalModal');
+
+function openModal() {
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Evita hacer scroll de fondo
+}
+
+function closeModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = ''; // Restaura el scroll normal de la página
+}
+
+// Cierra el modal si el usuario hace clic afuera de la caja blanca
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
+});
 </script>
 </body>
 </html>
