@@ -1,0 +1,24 @@
+<!-- Guarda este código en un archivo llamado: logo-horizontal.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 150" width="800" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&amp;display=swap');
+      .c-box { fill: #3D2B1F; }
+      .text-c { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 65px; fill: #FFFFFF; }
+      .text-i { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 65px; fill: #1A1A1A; }
+      .text-dot { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 65px; fill: #C5A059; }
+      .text-brand { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 42px; fill: #1A1A1A; letter-spacing: -1px; }
+      .text-sub { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 14px; fill: #C5A059; letter-spacing: 4px; text-transform: uppercase; }
+    </style>
+  </defs>
+  
+  <!-- Icono CI -->
+  <rect x="20" y="30" width="65" height="90" rx="12" class="c-box"/>
+  <text x="52" y="98" text-anchor="middle" class="text-c">C</text>
+  <text x="95" y="98" class="text-i">I</text>
+  <text x="115" y="98" class="text-dot">.</text>
+
+  <!-- Texto Carpintería Israel -->
+  <text x="160" y="85" class="text-brand">Carpintería Israel</text>
+  <text x="165" y="115" class="text-sub">Muebles a Medida</text>
+</svg>
