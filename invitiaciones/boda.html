@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nuestra Boda - Invitación</title>
+    <!-- Fuentes elegantes: Playfair (Serif), Great Vibes (Cursiva), Montserrat (Texto claro) -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* === CONFIGURACIÓN BASE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            width: 100vw; height: 100vh; overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: #f7f5f0; /* Tono crema muy elegante */
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .app-container {
+            position: relative; width: 100%; height: 100%; max-width: 450px;
+            /* Textura de papel acuarela suave */
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            background-color: #f7f5f0;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+
+        /* === ELEMENTOS FLOTANTES (Luces doradas cálidas) === */
+        .luz {
+            position: absolute; border-radius: 50%;
+            background: radial-gradient(circle, rgba(212,175,55,0.6) 0%, rgba(212,175,55,0) 70%);
+            animation: flotar 12s ease-in-out infinite alternate;
+            z-index: 1; pointer-events: none;
+        }
+        .l1 { width: 150px; height: 150px; top: 10%; left: -20px; animation-duration: 8s; }
+        .l2 { width: 200px; height: 200px; bottom: 20%; right: -50px; animation-duration: 12s; }
+        .l3 { width: 100px; height: 100px; top: 50%; left: 30%; animation-duration: 10s; opacity: 0.5; }
+
+        @keyframes flotar {
+            0% { transform: translateY(0) scale(1); opacity: 0.3; }
+            100% { transform: translateY(-30px) scale(1.1); opacity: 0.6; }
+        }
+
+        /* === PANTALLAS === */
+        .pantalla {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 20px; transition: opacity 1s ease, transform 1s ease; z-index: 10;
+        }
+        .oculta { opacity: 0; pointer-events: none; transform: scale(1.03); }
+        .activa { opacity: 1; pointer-events: all; transform: scale(1); }
+
+        /* === ESTILOS TEXTOS === */
+        .texto-intro {
+            font-family: 'Playfair Display', serif; font-size: 1rem; color: #5a5a5a;
+            margin-bottom: 20px; font-style: italic; letter-spacing: 2px;
+        }
+
+        .nombres-pareja {
+            font-family: 'Great Vibes', cursive; font-size: 4.5rem;
+            color: #b89153; /* Dorado elegante */
+            margin: 10px 0; line-height: 0.9;
+        }
+
+        .fecha-portada {
+            font-family: 'Montserrat', sans-serif; font-size: 0.9rem;
+            color: #5a5a5a; letter-spacing: 4px; text-transform: uppercase;
+            margin-top: 15px; margin-bottom: 30px;
+        }
+
+        /* === MARCO DE FOTO ELEGANTE === */
+        .marco-foto {
+            width: 200px; height: 280px; /* Formato retrato (arco) */
+            border-radius: 100px 100px 10px 10px;
+            border: 1px solid #d4af37; padding: 5px;
+            margin-bottom: 20px; position: relative;
+        }
+        .marco-foto img {
+            width: 100%; height: 100%; object-fit: cover;
+            border-radius: 95px 95px 5px 5px;
+            filter: sepia(0.2) contrast(1.1); /* Efecto romántico a la foto */
+        }
+
+        /* === BOTONES MINIMALISTAS === */
+        .btn {
+            background: #b89153; color: white; border: none;
+            padding: 14px 30px; font-size: 0.85rem; font-family: 'Montserrat', sans-serif;
+            letter-spacing: 3px; text-transform: uppercase; border-radius: 0;
+            cursor: pointer; transition: all 0.3s ease; width: 85%;
+            margin: 10px auto 0; box-shadow: 0 4px 15px rgba(184, 145, 83, 0.2);
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-secundario {
+            background: transparent; color: #b89153; border: 1px solid #b89153; box-shadow: none;
+        }
+
+        /* === TARJETA DE INFORMACIÓN (UI) === */
+        .tarjeta-info {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 30px 20px; border-radius: 5px; border: 1px solid rgba(184, 145, 83, 0.3);
+            width: 95%; max-height: calc(100vh - 40px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto;
+        }
+
+        .tarjeta-info h3 {
+            color: #b89153; margin-bottom: 15px;
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic;
+        }
+
+        .tarjeta-info p { color: #5a5a5a; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.6; }
+
+        /* === INDICADORES DE PASOS === */
+        .pasos-indicador { display: flex; justify-content: center; gap: 8px; margin: 20px 0; }
+        .paso-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(184, 145, 83, 0.3); transition: all 0.4s ease;
+        }
+        .paso-dot.activo { background: #b89153; transform: scale(1.3); }
+
+        /* === VISTAS DE PASOS === */
+        .paso { display: none; animation: aparecerSuave 0.8s ease; }
+        .paso.activo { display: block; }
+        @keyframes aparecerSuave { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* === DETALLES EVENTO === */
+        .evento-caja {
+            border-top: 1px solid rgba(184, 145, 83, 0.3);
+            border-bottom: 1px solid rgba(184, 145, 83, 0.3);
+            padding: 15px 0; margin-bottom: 15px;
+        }
+        .evento-caja h4 { font-family: 'Playfair Display', serif; color: #b89153; font-size: 1.2rem; margin-bottom: 5px; }
+        .icono-boda { font-size: 1.5rem; margin-bottom: 10px; opacity: 0.8; }
+
+        /* === NAVEGACIÓN INFERIOR === */
+        .nav-botones { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
+        .volver-btn {
+            margin-top: 20px; background: none; border: none; color: #888;
+            font-size: 0.8rem; letter-spacing: 1px; cursor: pointer; text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        /* === CONFIRMACIÓN === */
+        .confirmacion-demo {
+            margin-top: 20px; padding: 20px; background: #fff; border: 1px solid #b89153;
+            display: none; position: relative;
+        }
+        .confirmacion-demo.visible { display: block; animation: aparecerSuave 0.8s ease; }
+        .pase-texto { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #333; margin: 10px 0; }
+        .numero-pases { font-size: 1.5rem; color: #b89153; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Luces cálidas de fondo -->
+        <div class="luz l1"></div>
+        <div class="luz l2"></div>
+        <div class="luz l3"></div>
+
+        <!-- PANTALLA 1: PORTADA -->
+        <div id="pantalla1" class="pantalla activa">
+            <p class="texto-intro">Con la bendición de Dios<br>y de nuestros padres</p>
+
+            <div class="marco-foto">
+                <!-- Foto romántica (Unsplash) -->
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Novios">
+            </div>
+
+            <h1 class="nombres-pareja">Valeria<br>&<br>Alejandro</h1>
+            <p class="fecha-portada">24 · Noviembre · 2024</p>
+
+            <button class="btn" onclick="abrirInvitacion()">Abrir Invitación</button>
+        </div>
+
+        <!-- PANTALLA 2: CONTENIDO INTERACTIVO -->
+        <div id="pantalla2" class="pantalla oculta">
+            <div class="tarjeta-info">
+                <div>
+                    <!-- Encabezado -->
+                    <div style="text-align: center;">
+                        <h3 style="font-size: 1.5rem;">Nuestra Boda</h3>
+                        <p style="font-style: italic; color: #b89153;">Familia Mendoza Ruiz</p>
+                    </div>
+
+                    <!-- Indicadores (Puntitos dorados) -->
+                    <div class="pasos-indicador">
+                        <span class="paso-dot activo"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                    </div>
+
+                    <!-- PASO 1: Bienvenida -->
+                    <div class="paso activo">
+                        <div class="icono-boda">✨</div>
+                        <p style="font-size: 1.05rem; font-family: 'Playfair Display', serif;">
+                            "El amor no consiste en mirarse el uno al otro, sino en mirar juntos en la misma dirección."
+                        </p>
+                        <p style="margin-top: 20px;">
+                            Hay momentos en la vida que son especiales por sí solos. Compartirlos con las personas que más queremos, los hace inolvidables.
+                        </p>
+                    </div>
+
+                    <!-- PASO 2: Dónde y Cuándo -->
+                    <div class="paso">
+                        <div class="evento-caja">
+                            <div class="icono-boda">🕊️</div>
+                            <h4>Ceremonia Religiosa</h4>
+                            <p><strong>5:00 P.M.</strong><br>Catedral Basílica Menor<br>Centro Histórico</p>
+                            <a href="#" class="btn btn-secundario" style="padding: 10px; font-size: 0.7rem; width: 100%;">Ver en Mapa</a>
+                        </div>
+                        <div class="evento-caja" style="border-top: none;">
+                            <div class="icono-boda">🥂</div>
+                            <h4>Recepción</h4>
+                            <p><strong>7:30 P.M.</strong><br>Hacienda Los Arcángeles<br>Salón Principal</p>
+                            <a href="#" class="btn btn-secundario" style="padding: 10px; font-size: 0.7rem; width: 100%;">Ver en Mapa</a>
+                        </div>
+                    </div>
+
+                    <!-- PASO 3: Detalles (Dress Code y Regalos) -->
+                    <div class="paso">
+                        <div class="evento-caja">
+                            <div class="icono-boda">👔</div>
+                            <h4>Código de Vestimenta</h4>
+                            <p><strong>Etiqueta Rigurosa / Formal</strong><br>Nos reservamos el color blanco y beige exclusivo para la novia.</p>
+                        </div>
+                        <div class="evento-caja" style="border-top: none;">
+                            <div class="icono-boda">✉️</div>
+                            <h4>Sugerencia de Regalo</h4>
+                            <p>Su presencia es nuestro mayor regalo, pero si desean tener un detalle con nosotros, sugerimos <strong>Lluvia de Sobres</strong> (Efectivo el día del evento).</p>
+                        </div>
+                    </div>
+
+                    <!-- PASO 4: Confirmación y Pases -->
+                    <div class="paso">
+                        <div class="icono-boda">🤍</div>
+                        <p>Hemos reservado un lugar muy especial para ustedes.</p>
+                        
+                        <div style="background: rgba(184, 145, 83, 0.1); padding: 15px; margin: 15px 0;">
+                            <p style="margin:0;">Pases asignados para su familia:</p>
+                            <div class="numero-pases">2 Personas</div>
+                        </div>
+
+                        <p style="font-size: 0.8rem; font-style: italic;">Rogamos confirmar su asistencia antes del 10 de Noviembre.</p>
+
+                        <button type="button" class="btn" id="btnConfirmar" onclick="simularConfirmacion()">Confirmar Asistencia</button>
+
+                        <div id="confirmacionDemo" class="confirmacion-demo">
+                            <h4 style="color: #b89153; font-family: 'Playfair Display', serif;">¡Gracias por acompañarnos!</h4>
+                            <p style="font-size: 0.85rem; margin-top: 10px;">Hemos registrado su confirmación. Nos llena de emoción compartir este día con ustedes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones de Navegación Inferiores -->
+                <div>
+                    <div class="nav-botones">
+                        <button id="btnAnterior" class="btn btn-secundario" style="width:48%; display:none;" onclick="cambiarPaso(-1)">Anterior</button>
+                        <button id="btnSiguiente" class="btn" style="width:100%; margin-top:0;" onclick="cambiarPaso(1)">Siguiente</button>
+                    </div>
+                    <button class="volver-btn" onclick="cerrarInvitacion()">Volver a la portada</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pasos = Array.from(document.querySelectorAll('.paso'));
+        const indicadores = Array.from(document.querySelectorAll('.paso-dot'));
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnSiguiente = document.getElementById('btnSiguiente');
+        const confirmacionDemo = document.getElementById('confirmacionDemo');
+        const btnConfirmar = document.getElementById('btnConfirmar');
+        let pasoActual = 0;
+
+        function actualizarPasos() {
+            pasos.forEach((paso, indice) => paso.classList.toggle('activo', indice === pasoActual));
+            indicadores.forEach((dot, indice) => dot.classList.toggle('activo', indice === pasoActual));
+
+            btnAnterior.style.display = pasoActual === 0 ? 'none' : 'block';
+            btnSiguiente.style.display = pasoActual === pasos.length - 1 ? 'none' : 'block';
+            
+            if(pasoActual > 0) { btnSiguiente.style.width = '48%'; } 
+            else { btnSiguiente.style.width = '100%'; }
+        }
+
+        function cambiarPaso(direccion) {
+            const nuevoPaso = pasoActual + direccion;
+            if (nuevoPaso < 0 || nuevoPaso >= pasos.length) return;
+            pasoActual = nuevoPaso;
+            if (pasoActual !== pasos.length - 1) reiniciarConfirmacion();
+            actualizarPasos();
+        }
+
+        function abrirInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+            document.getElementById('pantalla1').classList.remove('activa');
+            document.getElementById('pantalla1').classList.add('oculta');
+            document.getElementById('pantalla2').classList.remove('oculta');
+            document.getElementById('pantalla2').classList.add('activa');
+            crearDestellos();
+        }
+
+        function cerrarInvitacion() {
+            document.getElementById('pantalla2').classList.remove('activa');
+            document.getElementById('pantalla2').classList.add('oculta');
+            document.getElementById('pantalla1').classList.remove('oculta');
+            document.getElementById('pantalla1').classList.add('activa');
+        }
+
+        /* Lluvia de destellos dorados sutiles */
+        function crearDestellos() {
+            const container = document.querySelector('.app-container');
+            for (let i = 0; i < 15; i++) {
+                const destello = document.createElement('div');
+                destello.innerHTML = '✨';
+                destello.style.position = 'absolute';
+                destello.style.left = Math.random() * 100 + 'vw';
+                destello.style.top = '110vh';
+                destello.style.fontSize = (Math.random() * 0.8 + 0.5) + 'rem';
+                destello.style.opacity = '0.6';
+                destello.style.transition = 'transform 4s linear, top 4s ease-out, opacity 4s ease-out';
+                destello.style.zIndex = '50';
+                container.appendChild(destello);
+
+                setTimeout(() => {
+                    destello.style.top = '-10vh';
+                    destello.style.opacity = '0';
+                    destello.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                }, 50);
+                setTimeout(() => destello.remove(), 4000);
+            }
+        }
+
+        function simularConfirmacion() {
+            confirmacionDemo.classList.add('visible');
+            btnConfirmar.textContent = 'Asistencia Confirmada';
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.opacity = '0.5';
+            btnConfirmar.style.background = '#888';
+            crearDestellos();
+        }
+
+        function reiniciarConfirmacion() {
+            confirmacionDemo.classList.remove('visible');
+            btnConfirmar.textContent = 'Confirmar Asistencia';
+            btnConfirmar.disabled = false;
+            btnConfirmar.style.opacity = '1';
+            btnConfirmar.style.background = '#b89153';
+        }
+
+        actualizarPasos();
+    </script>
+</body>
+</html>

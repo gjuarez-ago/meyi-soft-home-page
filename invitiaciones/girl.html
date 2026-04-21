@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Invitación Daniela</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #ffe6f0 0%, #ff99cc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 450px;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mariposa {
+            position: absolute;
+            font-size: 1.6rem;
+            opacity: 0.55;
+            animation: volar 12s linear infinite;
+            z-index: 1;
+            filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.4));
+        }
+
+        .m1 { top: 8%; left: -12%; animation-duration: 14s; }
+        .m2 { top: 18%; right: -8%; animation-duration: 11s; animation-direction: reverse; }
+        .m3 { top: 30%; left: -10%; animation-duration: 13s; font-size: 1.2rem; }
+        .m4 { top: 42%; right: -12%; animation-duration: 16s; }
+        .m5 { top: 54%; left: -14%; animation-duration: 10s; font-size: 1.4rem; }
+        .m6 { top: 66%; right: -10%; animation-duration: 15s; animation-direction: reverse; }
+        .m7 { top: 76%; left: -8%; animation-duration: 12s; font-size: 1.1rem; }
+        .m8 { top: 12%; left: 18%; animation-duration: 18s; font-size: 1.3rem; }
+        .m9 { top: 70%; right: 15%; animation-duration: 17s; font-size: 1.5rem; }
+        .m10 { bottom: 8%; left: 24%; animation-duration: 14s; font-size: 1.25rem; }
+
+        @keyframes volar {
+            0% { transform: translate(0, 0) rotate(0deg) scale(0.95); }
+            50% { transform: translate(52vw, -18vh) rotate(18deg) scale(1.06); }
+            100% { transform: translate(112vw, -6vh) rotate(-10deg) scale(0.92); }
+        }
+
+        .pantalla {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            transition: opacity 0.35s ease;
+            z-index: 10;
+        }
+
+        .oculta {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .activa {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .texto-intro {
+            font-size: 1.1rem;
+            color: #d13076;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .nombre {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            color: #e6196e;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+            line-height: 1;
+            animation: latido 2s infinite;
+        }
+
+        .apellidos {
+            font-size: 1.2rem;
+            color: #b51c5a;
+            margin-bottom: 30px;
+        }
+
+        .marco-foto {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(230, 25, 110, 0.3);
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #fff;
+        }
+
+        .marco-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #e6196e, #ff66a3);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(230, 25, 110, 0.4);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: transform 0.2s, opacity 0.2s;
+            margin: 10px auto 0;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-secundario {
+            background: white;
+            color: #e6196e;
+            border: 2px solid #e6196e;
+        }
+
+        .tarjeta-info {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 20px 16px 18px;
+            border-radius: 24px;
+            width: 92%;
+            max-height: calc(100vh - 24px);
+            box-shadow: 0 18px 40px rgba(153, 24, 78, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .icono {
+            font-size: 1.9rem;
+            margin-bottom: 4px;
+        }
+
+        .tarjeta-info h3 {
+            color: #d13076;
+            margin-bottom: 6px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+        }
+
+        .tarjeta-info p {
+            color: #555;
+            font-size: 0.94rem;
+            margin-bottom: 10px;
+            line-height: 1.32;
+        }
+
+        .encabezado-premium {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sello {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(230, 25, 110, 0.12);
+            color: #c12669;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pasos-indicador {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .paso-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(230, 25, 110, 0.2);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .paso-dot.activo {
+            background: #e6196e;
+            transform: scale(1.2);
+        }
+
+        .paso {
+            display: none;
+            animation: aparecerPaso 0.3s ease;
+        }
+
+        .paso.activo {
+            display: block;
+        }
+
+        @keyframes aparecerPaso {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .saludo-familia {
+            color: #b51c5a;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .mensaje-destacado {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 234, 242, 0.95));
+            border: 1px solid rgba(230, 25, 110, 0.12);
+            border-radius: 18px;
+            padding: 12px;
+            margin-top: 8px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .grid-detalles {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 12px 0 8px;
+        }
+
+        .detalle-box {
+            background: rgba(255, 255, 255, 0.78);
+            border-radius: 18px;
+            padding: 11px 10px;
+            box-shadow: 0 8px 18px rgba(214, 77, 138, 0.12);
+        }
+
+        .detalle-box strong {
+            display: block;
+            color: #c12669;
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+        }
+
+        .detalle-box span {
+            color: #5a4a51;
+            font-size: 0.88rem;
+            line-height: 1.25;
+        }
+
+        .agenda-lista {
+            display: grid;
+            gap: 8px;
+            margin: 12px 0 6px;
+            text-align: left;
+        }
+
+        .agenda-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.78);
+            border-radius: 16px;
+            padding: 10px;
+        }
+
+        .agenda-item b {
+            color: #c12669;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .agenda-item span {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .acciones-paso {
+            margin-top: 10px;
+        }
+
+        .btn-mini {
+            width: 68%;
+            padding: 10px 18px;
+            font-size: 0.96rem;
+        }
+
+        .nota-final {
+            font-size: 0.95rem;
+            color: #7a5b67;
+            margin-top: 10px;
+        }
+
+        .link-personalizado {
+            font-size: 0.82rem;
+            color: #a15d79;
+            margin-top: 10px;
+            line-height: 1.35;
+        }
+
+        .btn-link {
+            width: 100%;
+        }
+
+        .volver-btn {
+            margin-top: 14px;
+            background: none;
+            border: none;
+            color: #e6196e;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .qr-paso {
+            margin-top: 8px;
+        }
+
+        .qr-box {
+            margin: 14px auto 12px;
+            width: 220px;
+            height: 220px;
+            padding: 10px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #ffffff, #ffeaf3);
+            box-shadow: 0 16px 32px rgba(214, 77, 138, 0.16);
+            border: 1px solid rgba(230, 25, 110, 0.14);
+            display: grid;
+            place-items: center;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 18px;
+            background: #fff;
+        }
+
+        .qr-detalle {
+            background: rgba(255, 255, 255, 0.82);
+            border-radius: 18px;
+            padding: 12px;
+            box-shadow: 0 10px 22px rgba(214, 77, 138, 0.1);
+        }
+
+        .qr-detalle strong {
+            color: #c12669;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .estado-confirmado {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(230, 25, 110, 0.12);
+            color: #c12669;
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .particulas-exito {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .particula {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: explotar 1.4s ease-out forwards;
+        }
+
+        @keyframes explotar {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.4);
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.25) rotate(var(--giro));
+            }
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="particulas-exito" id="particulasExito"></div>
+
+        <div class="mariposa m1">🦋</div>
+        <div class="mariposa m2">🦋</div>
+        <div class="mariposa m3">🦋</div>
+        <div class="mariposa m4">🦋</div>
+        <div class="mariposa m5">🦋</div>
+        <div class="mariposa m6">🦋</div>
+        <div class="mariposa m7">🦋</div>
+        <div class="mariposa m8">🦋</div>
+        <div class="mariposa m9">🦋</div>
+        <div class="mariposa m10">🦋</div>
+
+        <div id="pantalla1" class="pantalla activa">
+            <p class="texto-intro">Nuestra familia tiene el honor<br>de invitarles al cumpleaños de</p>
+
+            <div class="marco-foto">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Daniela">
+            </div>
+
+            <h1 class="nombre">Daniela</h1>
+            <p class="apellidos">Sánchez de la Cruz</p>
+
+            <button class="btn" onclick="abrirInvitacion()">Abrir Invitación ✨</button>
+        </div>
+
+        <div id="pantalla2" class="pantalla oculta">
+            <div class="tarjeta-info">
+                <div>
+                    <div class="encabezado-premium">
+                        <span class="sello">Invitación especial</span>
+                        <div class="icono">🌸</div>
+                        <h3>Una tarde inolvidable</h3>
+                        <p class="saludo-familia">Con cariño para la Familia García Ramírez</p>
+                    </div>
+
+                    <div class="pasos-indicador">
+                        <span class="paso-dot activo"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                    </div>
+
+                    <div class="paso activo">
+                        <p>Hemos preparado esta invitación para ustedes con acceso personalizado, para que vivan cada detalle antes de llegar a la celebración de Daniela.</p>
+
+                        <div class="mensaje-destacado">
+                            <p><strong>Nos encantará contar con su presencia.</strong></p>
+                            <p>Su compañía hará que este día sea todavía más bonito y especial para nuestra familia.</p>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <p>Reservamos un momento especial para reunirnos, convivir y disfrutar juntos.</p>
+
+                        <div class="grid-detalles">
+                            <div class="detalle-box">
+                                <strong>Fecha</strong>
+                                <span>Sábado 18 de mayo</span>
+                            </div>
+                            <div class="detalle-box">
+                                <strong>Hora</strong>
+                                <span>4:00 P.M.</span>
+                            </div>
+                            <div class="detalle-box">
+                                <strong>Lugar</strong>
+                                <span>Calle 19, Centro</span>
+                            </div>
+                            <div class="detalle-box">
+                                <strong>Ciudad</strong>
+                                <span>Calkiní, Campeche</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <p>Queremos que disfruten una tarde cálida, familiar y bien organizada desde el primer momento.</p>
+
+                        <div class="agenda-lista">
+                            <div class="agenda-item">
+                                <span>💖</span>
+                                <div>
+                                    <b>Bienvenida</b>
+                                    <p>Recepción familiar, fotos y un espacio preparado para recibirles.</p>
+                                </div>
+                            </div>
+                            <div class="agenda-item">
+                                <span>🎂</span>
+                                <div>
+                                    <b>Celebración principal</b>
+                                    <p>Pastel, velitas y el momento especial de Daniela con todos ustedes.</p>
+                                </div>
+                            </div>
+                            <div class="agenda-item">
+                                <span>🎁</span>
+                                <div>
+                                    <b>Convivio</b>
+                                    <p>Botanas, música y una tarde agradable para compartir en familia.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <p>Sus enlaces están listos para facilitarles la llegada y registrar su asistencia en un solo toque.</p>
+
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-link">📍 Ver Ubicación GPS</a>
+                        <button type="button" class="btn btn-secundario btn-link" id="btnConfirmar" onclick="simularConfirmacion()">✅ Confirmar Asistencia</button>
+
+                        <p class="nota-final">Al confirmar, se abrirá un pase con QR para mostrar su registro exitoso.</p>
+                        <p class="link-personalizado">El QR puede personalizarse con los datos de cada familia invitada.</p>
+                    </div>
+
+                    <div class="paso">
+                        <div class="qr-paso">
+                            <div class="estado-confirmado">✅ Asistencia confirmada con éxito</div>
+                            <p>Su confirmación ya quedó lista. Este es su código QR de acceso para la celebración de Daniela.</p>
+
+                            <div class="qr-box">
+                                <img id="qrImage" alt="Código QR de confirmación">
+                            </div>
+
+                            <div class="qr-detalle">
+                                <strong>Pase familiar</strong>
+                                <p id="qrTexto">Familia García Ramírez · 18 de mayo · 4:00 P.M. · Daniela</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acciones-paso">
+                    <button id="btnAnterior" class="btn btn-secundario btn-mini" onclick="cambiarPaso(-1)" style="display:none;">Volver</button>
+                    <button id="btnSiguiente" class="btn btn-mini" onclick="cambiarPaso(1)">Continuar</button>
+                    <button class="volver-btn" onclick="cerrarInvitacion()">Volver a la portada</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pasos = Array.from(document.querySelectorAll('.paso'));
+        const indicadores = Array.from(document.querySelectorAll('.paso-dot'));
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnSiguiente = document.getElementById('btnSiguiente');
+        const particulasExito = document.getElementById('particulasExito');
+        const btnConfirmar = document.getElementById('btnConfirmar');
+        const qrImage = document.getElementById('qrImage');
+        const qrTexto = document.getElementById('qrTexto');
+        const pasoConfirmacion = 3;
+        const pasoQr = 4;
+        let pasoActual = 0;
+        let confirmacionRealizada = false;
+
+        function actualizarPasos() {
+            pasos.forEach((paso, indice) => {
+                paso.classList.toggle('activo', indice === pasoActual);
+            });
+
+            indicadores.forEach((dot, indice) => {
+                dot.classList.toggle('activo', indice === pasoActual);
+            });
+
+            btnAnterior.style.display = pasoActual === 0 ? 'none' : 'flex';
+
+            if (pasoActual === pasoQr) {
+                btnSiguiente.style.display = 'none';
+            } else if (pasoActual === pasoConfirmacion) {
+                btnSiguiente.style.display = confirmacionRealizada ? 'flex' : 'none';
+            } else {
+                btnSiguiente.style.display = 'flex';
+            }
+        }
+
+        function cambiarPaso(direccion) {
+            const nuevoPaso = pasoActual + direccion;
+            if (nuevoPaso < 0 || nuevoPaso >= pasos.length) return;
+            if (nuevoPaso === pasoQr && !confirmacionRealizada) return;
+
+            pasoActual = nuevoPaso;
+            actualizarPasos();
+        }
+
+        function abrirInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla1').classList.remove('activa');
+            document.getElementById('pantalla1').classList.add('oculta');
+            document.getElementById('pantalla2').classList.remove('oculta');
+            document.getElementById('pantalla2').classList.add('activa');
+
+            crearConfeti();
+        }
+
+        function cerrarInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla2').classList.remove('activa');
+            document.getElementById('pantalla2').classList.add('oculta');
+            document.getElementById('pantalla1').classList.remove('oculta');
+            document.getElementById('pantalla1').classList.add('activa');
+        }
+
+        function crearConfeti() {
+            const container = document.querySelector('.app-container');
+            for (let i = 0; i < 24; i++) {
+                const corazon = document.createElement('div');
+                corazon.innerHTML = i % 2 === 0 ? '💖' : '✨';
+                corazon.style.position = 'absolute';
+                corazon.style.left = Math.random() * 100 + 'vw';
+                corazon.style.top = '-10vh';
+                corazon.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                corazon.style.transition = 'transform 3s linear, top 3s linear';
+                corazon.style.zIndex = '50';
+
+                container.appendChild(corazon);
+
+                setTimeout(() => {
+                    corazon.style.top = '110vh';
+                    corazon.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                }, 100);
+
+                setTimeout(() => {
+                    corazon.remove();
+                }, 3000);
+            }
+        }
+
+        function simularConfirmacion() {
+            confirmacionRealizada = true;
+            btnConfirmar.textContent = '✅ Confirmado';
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.opacity = '0.8';
+            btnConfirmar.style.cursor = 'default';
+
+            generarQrConfirmacion();
+            crearExplosionConfirmacion();
+            crearConfeti();
+
+            pasoActual = pasoQr;
+            actualizarPasos();
+        }
+
+        function generarQrConfirmacion() {
+            const datos = 'Invitación Daniela | Familia García Ramírez | Confirmado | 18 de mayo | 4:00 P.M. | Calle 19, Centro, Calkiní, Campeche';
+            qrTexto.textContent = 'Familia García Ramírez · Confirmado · 18 de mayo · 4:00 P.M.';
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(datos);
+        }
+
+        function crearExplosionConfirmacion() {
+            particulasExito.innerHTML = '';
+            const iconos = ['✨', '💖', '🌸', '🎉', '💫', '🎀'];
+
+            for (let i = 0; i < 18; i++) {
+                const particula = document.createElement('span');
+                particula.className = 'particula';
+                particula.textContent = iconos[i % iconos.length];
+                particula.style.setProperty('--x', ((Math.random() - 0.5) * 260) + 'px');
+                particula.style.setProperty('--y', ((Math.random() - 0.5) * 180) + 'px');
+                particula.style.setProperty('--giro', ((Math.random() * 280) - 140) + 'deg');
+                particula.style.animationDelay = (i * 0.03) + 's';
+                particulasExito.appendChild(particula);
+            }
+
+            setTimeout(() => {
+                particulasExito.innerHTML = '';
+            }, 1600);
+        }
+
+        function reiniciarConfirmacion() {
+            confirmacionRealizada = false;
+            btnConfirmar.textContent = '✅ Confirmar Asistencia';
+            btnConfirmar.disabled = false;
+            btnConfirmar.style.opacity = '1';
+            btnConfirmar.style.cursor = 'pointer';
+            qrImage.removeAttribute('src');
+            qrTexto.textContent = 'Familia García Ramírez · 18 de mayo · 4:00 P.M. · Daniela';
+            particulasExito.innerHTML = '';
+        }
+
+        actualizarPasos();
+    </script>
+</body>
+</html>

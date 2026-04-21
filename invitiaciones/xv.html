@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mis XV Años - Sofía</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 20%),
+                radial-gradient(circle at 80% 12%, rgba(255,255,255,0.06), transparent 18%),
+                linear-gradient(180deg, rgba(30, 41, 59, 0.96) 0%, rgba(9, 14, 28, 0.98) 100%);
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 20%),
+                radial-gradient(circle at 80% 12%, rgba(255,255,255,0.06), transparent 18%),
+                linear-gradient(180deg, rgba(30, 41, 59, 0.96) 0%, rgba(9, 14, 28, 0.98) 100%),
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .aurora {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 12%, rgba(230, 185, 188, 0.16), transparent 30%),
+                radial-gradient(circle at 12% 78%, rgba(148, 163, 184, 0.12), transparent 26%);
+            animation: respirarFondo 7s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes respirarFondo {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        .estrella {
+            position: absolute;
+            border-radius: 50%;
+            background: #f5d7d9;
+            box-shadow: 0 0 10px #e6b9bc, 0 0 18px rgba(193, 129, 137, 0.8);
+            animation: destello 4s infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .e1 { width: 3px; height: 3px; top: 12%; left: 12%; animation-duration: 3s; }
+        .e2 { width: 4px; height: 4px; top: 20%; right: 16%; animation-duration: 5s; }
+        .e3 { width: 2px; height: 2px; top: 34%; left: 22%; animation-duration: 4.2s; }
+        .e4 { width: 5px; height: 5px; top: 10%; right: 8%; animation-duration: 6s; }
+        .e5 { width: 3px; height: 3px; top: 46%; left: 8%; animation-duration: 3.8s; }
+        .e6 { width: 2px; height: 2px; top: 56%; right: 24%; animation-duration: 4.8s; }
+        .e7 { width: 4px; height: 4px; bottom: 24%; left: 18%; animation-duration: 5.6s; }
+        .e8 { width: 3px; height: 3px; bottom: 18%; right: 14%; animation-duration: 4.4s; }
+
+        .estrella-cruz {
+            position: absolute;
+            color: #f8dde0;
+            font-size: 1rem;
+            z-index: 1;
+            pointer-events: none;
+            animation: flotarBrillo 5s ease-in-out infinite;
+            text-shadow: 0 0 18px rgba(230, 185, 188, 0.8);
+        }
+
+        .s1 { top: 16%; left: 70%; animation-delay: -0.8s; }
+        .s2 { top: 48%; left: 14%; animation-delay: -1.8s; }
+        .s3 { bottom: 26%; right: 20%; animation-delay: -2.2s; }
+        .s4 { bottom: 14%; left: 32%; animation-delay: -0.4s; }
+
+        @keyframes destello {
+            0% { transform: scale(1); opacity: 0.2; }
+            100% { transform: scale(2.1); opacity: 1; }
+        }
+
+        @keyframes flotarBrillo {
+            0%, 100% { transform: translateY(0) scale(0.9) rotate(0deg); opacity: 0.35; }
+            50% { transform: translateY(-8px) scale(1.15) rotate(18deg); opacity: 1; }
+        }
+
+        .pantalla {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: opacity 0.35s ease;
+            z-index: 10;
+        }
+
+        .oculta {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .activa {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .texto-intro {
+            font-size: 1rem;
+            color: #e6b9bc;
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nombre {
+            font-family: 'Parisienne', cursive;
+            font-size: 5.5rem;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(230, 185, 188, 0.4);
+            margin: 0;
+            line-height: 1;
+            animation: subirNombre 2.4s ease-in-out infinite;
+        }
+
+        @keyframes subirNombre {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .fecha-portada {
+            color: #cbd5e1;
+            margin-top: 15px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .marco-foto {
+            width: 220px;
+            height: 280px;
+            border-radius: 110px 110px 0 0;
+            border: 2px solid #e6b9bc;
+            padding: 6px;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(230, 185, 188, 0.15);
+            overflow: hidden;
+        }
+
+        .marco-foto::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0 18%, rgba(255,255,255,0.28) 18% 24%, transparent 24% 100%);
+            animation: brilloFoto 3s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes brilloFoto {
+            from { transform: translateX(-140%); }
+            to { transform: translateX(180%); }
+        }
+
+        .marco-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 104px 104px 0 0;
+            filter: contrast(1.08);
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #e6b9bc 0%, #c18189 100%);
+            color: #1e293b;
+            border: none;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            width: min(100%, 290px);
+            min-height: 50px;
+            margin: 10px auto 0;
+            box-shadow: 0 5px 20px rgba(193, 129, 137, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-secundario {
+            background: rgba(255, 255, 255, 0.05);
+            color: #e6b9bc;
+            border: 1px solid #e6b9bc;
+            box-shadow: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .tarjeta-info {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 26px 18px 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(230, 185, 188, 0.3);
+            width: 95%;
+            max-height: calc(100vh - 40px);
+            color: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .tarjeta-info h3 {
+            color: #e6b9bc;
+            margin-bottom: 8px;
+            font-family: 'Parisienne', cursive;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .tarjeta-info p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.55;
+            color: #cbd5e1;
+        }
+
+        .subacceso {
+            text-align: center;
+            color: #e6b9bc;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .pasos-indicador {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 14px 0 22px;
+        }
+
+        .paso-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(230, 185, 188, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .paso-dot.activo {
+            background: #e6b9bc;
+            transform: scale(1.28);
+            box-shadow: 0 0 10px #e6b9bc;
+        }
+
+        .paso {
+            display: none;
+            animation: aparecerPaso 0.35s ease;
+        }
+
+        .paso.activo {
+            display: block;
+        }
+
+        @keyframes aparecerPaso {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .icono-paso {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            animation: flotarBrillo 4s ease-in-out infinite;
+        }
+
+        .evento-caja {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(230, 185, 188, 0.2);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        .evento-caja h4 {
+            color: #e6b9bc;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .evento-caja p {
+            margin-bottom: 0;
+        }
+
+        .spotify-box {
+            background: linear-gradient(45deg, #1db95422, #00000055);
+            border: 1px solid #1db954;
+            border-radius: 16px;
+            padding: 15px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .spotify-icon {
+            font-size: 2.5rem;
+            color: #1db954;
+        }
+
+        .panel-pases {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 14px;
+            margin: 15px 0;
+            border: 1px solid rgba(230, 185, 188, 0.15);
+        }
+
+        .panel-pases p {
+            margin: 0;
+        }
+
+        .numero-pases {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 6px;
+            color: #f8ecee;
+        }
+
+        .estado-confirmado {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(230, 185, 188, 0.12);
+            border: 1px solid #e6b9bc;
+            color: #f8e1e4;
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .qr-box {
+            width: 220px;
+            height: 220px;
+            margin: 14px auto 12px;
+            padding: 10px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #f7e7e9, #c18189);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.24);
+            border: 1px solid rgba(230, 185, 188, 0.5);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-box::before {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background: conic-gradient(from 180deg, transparent, rgba(255,255,255,0.58), transparent 36%);
+            animation: giroBrillo 3.2s linear infinite;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 18px;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .qr-detalle {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(230, 185, 188, 0.22);
+            border-radius: 16px;
+            padding: 12px;
+        }
+
+        .qr-detalle strong {
+            display: block;
+            color: #e6b9bc;
+            margin-bottom: 4px;
+        }
+
+        @keyframes giroBrillo {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .volver-btn {
+            margin: 18px auto 0;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.84rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: block;
+        }
+
+        .particulas,
+        .explosion {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .particulas { z-index: 20; }
+        .explosion { z-index: 19; }
+
+        .particula {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: explotar 1.45s ease-out forwards;
+        }
+
+        .anillo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.92);
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            animation: anilloExpandir 0.85s ease-out forwards;
+        }
+
+        .flash {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 28px;
+            height: 28px;
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(230,185,188,0.45), transparent 72%);
+            animation: flashExplosion 0.6s ease-out forwards;
+        }
+
+        @keyframes explotar {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.4);
+            }
+            18% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--giro)) scale(1.24);
+            }
+        }
+
+        @keyframes anilloExpandir {
+            0% {
+                opacity: 0.92;
+                transform: translate(-50%, -50%) scale(0.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(8.8);
+            }
+        }
+
+        @keyframes flashExplosion {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(8.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="aurora"></div>
+        <div class="particulas" id="particulasExito"></div>
+        <div class="explosion" id="explosionExito"></div>
+
+        <div class="estrella e1"></div>
+        <div class="estrella e2"></div>
+        <div class="estrella e3"></div>
+        <div class="estrella e4"></div>
+        <div class="estrella e5"></div>
+        <div class="estrella e6"></div>
+        <div class="estrella e7"></div>
+        <div class="estrella e8"></div>
+
+        <div class="estrella-cruz s1">✦</div>
+        <div class="estrella-cruz s2">✧</div>
+        <div class="estrella-cruz s3">✦</div>
+        <div class="estrella-cruz s4">✧</div>
+
+        <div id="pantalla1" class="pantalla activa">
+            <p class="texto-intro">Mis Quince Años</p>
+
+            <div class="marco-foto">
+                <img src="https://images.unsplash.com/photo-1549471013-3364d7220b75?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Quinceañera">
+            </div>
+
+            <h1 class="nombre">Sofía</h1>
+            <p class="fecha-portada">20 . OCTUBRE . 2024</p>
+
+            <button class="btn" onclick="abrirInvitacion()">Descubrir Invitación ✦</button>
+        </div>
+
+        <div id="pantalla2" class="pantalla oculta">
+            <div class="tarjeta-info">
+                <div>
+                    <h3 style="text-align: center; font-size: 2rem;">Bienvenidos</h3>
+                    <p class="subacceso">Pase Exclusivo: Familia López</p>
+
+                    <div class="pasos-indicador">
+                        <span class="paso-dot activo"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                    </div>
+
+                    <div class="paso activo">
+                        <div class="icono-paso">✦</div>
+                        <p style="font-size: 1.06rem; font-style: italic;">"Hay momentos inolvidables que se atesoran en el corazón para siempre..."</p>
+                        <p>Hoy comienza una nueva etapa en mi vida. Me llena de emoción celebrar mis XV Años y quiero compartir la magia de esta noche tan especial contigo.</p>
+                    </div>
+
+                    <div class="paso">
+                        <div class="evento-caja">
+                            <span style="font-size: 1.5rem; display: block; margin-bottom: 5px;">⛪</span>
+                            <h4>Misa de Acción de Gracias</h4>
+                            <p><strong>6:00 P.M.</strong><br>Parroquia de San Miguel Arcángel</p>
+                            <a href="#" class="btn btn-secundario" style="width:100%; margin-top: 10px;">📍 Ver Mapa de Iglesia</a>
+                        </div>
+                        <div class="evento-caja">
+                            <span style="font-size: 1.5rem; display: block; margin-bottom: 5px;">🥂</span>
+                            <h4>Recepción y Fiesta</h4>
+                            <p><strong>8:30 P.M.</strong><br>Salón de Eventos "Cristal VIP"</p>
+                            <a href="#" class="btn btn-secundario" style="width:100%; margin-top: 10px;">📍 Ver Mapa del Salón</a>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <div class="evento-caja">
+                            <h4>👗 Dress Code</h4>
+                            <p><strong>Formal / Elegante</strong><br><span style="font-size: 0.85rem;">Me encantaría ser la única de color rosa esta noche, gracias por no usar este tono.</span></p>
+                        </div>
+
+                        <div class="spotify-box">
+                            <div class="spotify-icon">🎵</div>
+                            <div style="text-align: left;">
+                                <h4 style="color: #1db954; font-size: 1rem; margin-bottom: 3px;">¡Ponle ritmo a la fiesta!</h4>
+                                <p style="font-size: 0.8rem; margin: 0; color: #cbd5e1;">Ayúdame a armar la playlist agregando tus canciones favoritas.</p>
+                                <a href="#" style="color: white; font-size: 0.8rem; text-decoration: underline; font-weight: bold; margin-top: 5px; display: inline-block;">Abrir en Spotify</a>
+                            </div>
+                        </div>
+
+                        <div class="evento-caja">
+                            <h4>🎁 Sugerencia de Regalo</h4>
+                            <p style="font-size: 0.9rem;">Tu presencia es mi mejor regalo, pero si deseas darme un detalle, prefiero <strong>Lluvia de Sobres</strong> (Efectivo).</p>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <div class="icono-paso">🎟️</div>
+                        <h4 style="color: #e6b9bc; margin-bottom: 10px;">Tu Acceso VIP</h4>
+                        <p>Hemos reservado un lugar especial para ti en esta gran noche.</p>
+
+                        <div class="panel-pases">
+                            <p style="color: #e6b9bc; text-transform: uppercase; font-size: 0.8rem;">Pases asignados</p>
+                            <div class="numero-pases">3 Personas</div>
+                        </div>
+
+                        <p style="font-size: 0.84rem; color: #94a3b8;">Por favor confirma tu asistencia antes del 1 de octubre para asegurar tu lugar en la lista de invitados.</p>
+
+                        <button type="button" class="btn" id="btnConfirmar" onclick="simularConfirmacion()">Confirmar Acceso</button>
+                    </div>
+
+                    <div class="paso">
+                        <div class="estado-confirmado">✦ Estás en la lista</div>
+                        <p>Tu asistencia quedó registrada. Presenta este código QR al llegar para tu acceso VIP a la celebración de Sofía.</p>
+
+                        <div class="qr-box">
+                            <img id="qrImage" alt="Código QR de acceso VIP">
+                        </div>
+
+                        <div class="qr-detalle">
+                            <strong>Pase especial</strong>
+                            <p id="qrTexto">Familia López · Confirmado · 20 de octubre · 3 pases</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="nav-botones">
+                        <button id="btnAnterior" class="btn btn-secundario" style="display:none;" onclick="cambiarPaso(-1)">Anterior</button>
+                        <button id="btnSiguiente" class="btn" onclick="cambiarPaso(1)">Siguiente</button>
+                    </div>
+                    <button class="volver-btn" onclick="cerrarInvitacion()">Volver al inicio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pasos = Array.from(document.querySelectorAll('.paso'));
+        const indicadores = Array.from(document.querySelectorAll('.paso-dot'));
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnSiguiente = document.getElementById('btnSiguiente');
+        const btnConfirmar = document.getElementById('btnConfirmar');
+        const qrImage = document.getElementById('qrImage');
+        const qrTexto = document.getElementById('qrTexto');
+        const particulasExito = document.getElementById('particulasExito');
+        const explosionExito = document.getElementById('explosionExito');
+
+        const pasoConfirmacion = 3;
+        const pasoQr = 4;
+
+        let pasoActual = 0;
+        let confirmacionRealizada = false;
+
+        function actualizarPasos() {
+            pasos.forEach((paso, indice) => {
+                paso.classList.toggle('activo', indice === pasoActual);
+            });
+
+            indicadores.forEach((dot, indice) => {
+                dot.classList.toggle('activo', indice === pasoActual);
+            });
+
+            btnAnterior.style.display = pasoActual === 0 ? 'none' : 'flex';
+
+            if (pasoActual === pasoQr) {
+                btnSiguiente.style.display = 'none';
+            } else if (pasoActual === pasoConfirmacion) {
+                btnSiguiente.style.display = confirmacionRealizada ? 'flex' : 'none';
+            } else {
+                btnSiguiente.style.display = 'flex';
+            }
+        }
+
+        function cambiarPaso(direccion) {
+            const nuevoPaso = pasoActual + direccion;
+            if (nuevoPaso < 0 || nuevoPaso >= pasos.length) return;
+            if (nuevoPaso === pasoQr && !confirmacionRealizada) return;
+
+            pasoActual = nuevoPaso;
+            actualizarPasos();
+        }
+
+        function abrirInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla1').classList.remove('activa');
+            document.getElementById('pantalla1').classList.add('oculta');
+            document.getElementById('pantalla2').classList.remove('oculta');
+            document.getElementById('pantalla2').classList.add('activa');
+
+            crearDestellos();
+        }
+
+        function cerrarInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla2').classList.remove('activa');
+            document.getElementById('pantalla2').classList.add('oculta');
+            document.getElementById('pantalla1').classList.remove('oculta');
+            document.getElementById('pantalla1').classList.add('activa');
+        }
+
+        function crearDestellos() {
+            const container = document.querySelector('.app-container');
+            const iconos = ['✦', '✧', '✨', '⋆'];
+
+            for (let i = 0; i < 26; i++) {
+                const destello = document.createElement('div');
+                destello.innerHTML = iconos[i % iconos.length];
+                destello.style.position = 'absolute';
+                destello.style.left = Math.random() * 100 + 'vw';
+                destello.style.top = '-10vh';
+                destello.style.fontSize = (Math.random() * 0.9 + 0.8) + 'rem';
+                destello.style.color = '#e6b9bc';
+                destello.style.transition = 'transform 3s linear, top 3s ease-in, opacity 3s ease-out';
+                destello.style.zIndex = '50';
+                destello.style.opacity = '1';
+
+                container.appendChild(destello);
+
+                setTimeout(() => {
+                    destello.style.top = '110vh';
+                    destello.style.opacity = '0.12';
+                    destello.style.transform = 'rotate(' + (Math.random() * 360) + 'deg) translateX(' + ((Math.random() - 0.5) * 36) + 'px)';
+                }, 50);
+
+                setTimeout(() => {
+                    destello.remove();
+                }, 3000);
+            }
+        }
+
+        function simularConfirmacion() {
+            confirmacionRealizada = true;
+            btnConfirmar.textContent = 'Acceso Confirmado ✦';
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.background = '#475569';
+            btnConfirmar.style.boxShadow = 'none';
+            btnConfirmar.style.color = '#cbd5e1';
+
+            generarQrConfirmacion();
+            crearExplosionConfirmacion();
+            crearDestellos();
+
+            pasoActual = pasoQr;
+            actualizarPasos();
+        }
+
+        function generarQrConfirmacion() {
+            const datos = 'XV Sofia | Familia Lopez | Confirmado | 20 de octubre | 3 pases | Cristal VIP';
+            qrTexto.textContent = 'Familia López · Confirmado · 20 de octubre · 3 pases';
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(datos);
+        }
+
+        function crearExplosionConfirmacion() {
+            particulasExito.innerHTML = '';
+            explosionExito.innerHTML = '';
+
+            for (let i = 0; i < 3; i++) {
+                const anillo = document.createElement('div');
+                anillo.className = 'anillo';
+                anillo.style.animationDelay = (i * 0.12) + 's';
+                explosionExito.appendChild(anillo);
+            }
+
+            for (let i = 0; i < 2; i++) {
+                const flash = document.createElement('div');
+                flash.className = 'flash';
+                flash.style.animationDelay = (i * 0.08) + 's';
+                explosionExito.appendChild(flash);
+            }
+
+            const iconos = ['✦', '✧', '✨', '⋆', '💫', '🌙'];
+            for (let i = 0; i < 24; i++) {
+                const particula = document.createElement('span');
+                particula.className = 'particula';
+                particula.textContent = iconos[i % iconos.length];
+                particula.style.setProperty('--x', ((Math.random() - 0.5) * 300) + 'px');
+                particula.style.setProperty('--y', ((Math.random() - 0.5) * 220) + 'px');
+                particula.style.setProperty('--giro', ((Math.random() * 320) - 160) + 'deg');
+                particula.style.animationDelay = (i * 0.025) + 's';
+                particulasExito.appendChild(particula);
+            }
+
+            setTimeout(() => {
+                particulasExito.innerHTML = '';
+                explosionExito.innerHTML = '';
+            }, 1600);
+        }
+
+        function reiniciarConfirmacion() {
+            confirmacionRealizada = false;
+            btnConfirmar.textContent = 'Confirmar Acceso';
+            btnConfirmar.disabled = false;
+            btnConfirmar.style.background = 'linear-gradient(135deg, #e6b9bc 0%, #c18189 100%)';
+            btnConfirmar.style.boxShadow = '0 5px 20px rgba(193, 129, 137, 0.4)';
+            btnConfirmar.style.color = '#1e293b';
+            qrImage.removeAttribute('src');
+            qrTexto.textContent = 'Familia López · Confirmado · 20 de octubre · 3 pases';
+            particulasExito.innerHTML = '';
+            explosionExito.innerHTML = '';
+        }
+
+        actualizarPasos();
+    </script>
+</body>
+</html>

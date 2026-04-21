@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mi Bautizo - Mateo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Lato', sans-serif;
+            background: #faf8f5;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 12%, rgba(212,175,55,0.12), transparent 24%),
+                radial-gradient(circle at 12% 78%, rgba(138,154,134,0.08), transparent 22%),
+                url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            background-color: #faf8f5;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .halo {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 10%, rgba(255,255,255,0.5), transparent 18%),
+                radial-gradient(circle at 80% 30%, rgba(255,255,255,0.2), transparent 14%);
+            animation: respirarLuz 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes respirarLuz {
+            0%, 100% { opacity: 0.65; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+
+        .pluma {
+            position: absolute;
+            color: rgba(255,255,255,0.95);
+            font-size: 1.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            opacity: 0.6;
+            animation: caer 15s linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .p1 { top: -10%; left: 18%; animation-duration: 12s; font-size: 2rem; }
+        .p2 { top: -10%; right: 30%; animation-duration: 18s; animation-delay: 2s; }
+        .p3 { top: -10%; left: 60%; animation-duration: 14s; animation-delay: 5s; font-size: 1.2rem; }
+        .p4 { top: -10%; right: 12%; animation-duration: 16s; animation-delay: 1.2s; font-size: 1.4rem; }
+        .p5 { top: -10%; left: 42%; animation-duration: 20s; animation-delay: 3.8s; font-size: 1.1rem; }
+
+        @keyframes caer {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+
+        .destello {
+            position: absolute;
+            color: #d4af37;
+            font-size: 0.95rem;
+            z-index: 1;
+            opacity: 0.6;
+            text-shadow: 0 0 16px rgba(212,175,55,0.45);
+            animation: brillar 4.5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .d1 { top: 14%; left: 12%; animation-delay: -0.4s; }
+        .d2 { top: 26%; right: 16%; animation-delay: -1.4s; }
+        .d3 { bottom: 26%; left: 18%; animation-delay: -2.2s; }
+        .d4 { bottom: 18%; right: 22%; animation-delay: -0.8s; }
+
+        @keyframes brillar {
+            0%, 100% { transform: scale(0.9) translateY(0); opacity: 0.35; }
+            50% { transform: scale(1.2) translateY(-6px); opacity: 1; }
+        }
+
+        .pantalla {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: opacity 0.35s ease;
+            z-index: 10;
+        }
+
+        .oculta {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .activa {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .texto-intro {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: #8a9a86;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nombre {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5.5rem;
+            color: #d4af37;
+            margin: 5px 0 12px;
+            line-height: 0.9;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            animation: flotarNombre 2.8s ease-in-out infinite;
+        }
+
+        @keyframes flotarNombre {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
+        .fecha-portada {
+            font-family: 'Cinzel', serif;
+            color: #8a9a86;
+            letter-spacing: 2px;
+            font-size: 0.88rem;
+            margin-top: 5px;
+        }
+
+        .marco-foto {
+            width: 190px;
+            height: 190px;
+            border-radius: 50%;
+            border: 3px solid #8a9a86;
+            padding: 6px;
+            margin-bottom: 15px;
+            position: relative;
+            background: #fff;
+            box-shadow: 0 15px 30px rgba(138, 154, 134, 0.2);
+            overflow: hidden;
+        }
+
+        .marco-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .marco-foto::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 1px dashed #d4af37;
+            animation: girar 20s linear infinite;
+        }
+
+        .marco-foto::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,0.26) 24% 30%, transparent 30% 100%);
+            animation: brilloFoto 3s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes girar {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes brilloFoto {
+            from { transform: translateX(-140%); }
+            to { transform: translateX(180%); }
+        }
+
+        .btn {
+            background: #8a9a86;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 0.9rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 28px;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+            width: min(100%, 290px);
+            min-height: 50px;
+            margin: 12px auto 0;
+            box-shadow: 0 6px 15px rgba(138, 154, 134, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-secundario {
+            background: #fff;
+            color: #8a9a86;
+            border: 1px solid #8a9a86;
+            box-shadow: none;
+        }
+
+        .tarjeta-info {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 25px 20px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            width: 95%;
+            max-height: calc(100vh - 40px);
+            color: #555;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .tarjeta-info::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.14);
+            pointer-events: none;
+        }
+
+        .tarjeta-info h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            font-weight: normal;
+        }
+
+        .tarjeta-info p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            line-height: 1.55;
+            color: #666;
+        }
+
+        .icono-superior {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+            animation: brillar 4.5s ease-in-out infinite;
+        }
+
+        .pasos-indicador {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0 20px;
+        }
+
+        .paso-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e0e5de;
+            transition: all 0.3s ease;
+        }
+
+        .paso-dot.activo {
+            background: #8a9a86;
+            transform: scale(1.4);
+            box-shadow: 0 0 10px rgba(138,154,134,0.3);
+        }
+
+        .paso {
+            display: none;
+            animation: aparecerPaso 0.35s ease;
+        }
+
+        .paso.activo {
+            display: block;
+        }
+
+        @keyframes aparecerPaso {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .evento-caja {
+            border-top: 1px solid #e0e5de;
+            padding: 15px 0;
+        }
+
+        .evento-caja h4 {
+            color: #8a9a86;
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .padrinos-box {
+            background: #f4f6f3;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #e0e5de;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
+        }
+
+        .padrinos-box h5 {
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .panel-pases {
+            background: rgba(138, 154, 134, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border: 1px solid rgba(138,154,134,0.14);
+        }
+
+        .panel-pases p {
+            margin: 0;
+        }
+
+        .numero-pases {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+            margin-top: 5px;
+        }
+
+        .estado-confirmado {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(138,154,134,0.12);
+            border: 1px solid rgba(138,154,134,0.3);
+            color: #7a8a77;
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .qr-box {
+            width: 220px;
+            height: 220px;
+            margin: 14px auto 12px;
+            padding: 10px;
+            border-radius: 24px;
+            background: linear-gradient(145deg, #ffffff, #f3efe7);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(212,175,55,0.4);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-box::before {
+            content: '';
+            position: absolute;
+            inset: -40%;
+            background: conic-gradient(from 180deg, transparent, rgba(255,255,255,0.68), transparent 40%);
+            animation: giroBrillo 3.4s linear infinite;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 18px;
+            background: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .qr-detalle {
+            background: #f7f8f5;
+            border: 1px solid #e0e5de;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .qr-detalle strong {
+            display: block;
+            color: #8a9a86;
+            margin-bottom: 4px;
+        }
+
+        @keyframes giroBrillo {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .volver-btn {
+            margin: 18px auto 0;
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: underline;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .particulas,
+        .explosion {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .particulas { z-index: 20; }
+        .explosion { z-index: 19; }
+
+        .particula {
+            position: absolute;
+            top: 52%;
+            left: 50%;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: explotar 1.5s ease-out forwards;
+        }
+
+        .anillo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.92);
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            animation: anilloExpandir 0.85s ease-out forwards;
+        }
+
+        .flash {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 28px;
+            height: 28px;
+            transform: translate(-50%, -50%) scale(0.2);
+            opacity: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(212,175,55,0.35), transparent 72%);
+            animation: flashExplosion 0.65s ease-out forwards;
+        }
+
+        @keyframes explotar {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.4);
+            }
+            18% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) rotate(var(--giro)) scale(1.24);
+            }
+        }
+
+        @keyframes anilloExpandir {
+            0% {
+                opacity: 0.92;
+                transform: translate(-50%, -50%) scale(0.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(8.8);
+            }
+        }
+
+        @keyframes flashExplosion {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(0.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(8.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="halo"></div>
+        <div class="particulas" id="particulasExito"></div>
+        <div class="explosion" id="explosionExito"></div>
+
+        <div class="pluma p1">🕊️</div>
+        <div class="pluma p2">🕊️</div>
+        <div class="pluma p3">✨</div>
+        <div class="pluma p4">✝️</div>
+        <div class="pluma p5">🤍</div>
+
+        <div class="destello d1">✦</div>
+        <div class="destello d2">✧</div>
+        <div class="destello d3">✦</div>
+        <div class="destello d4">✧</div>
+
+        <div id="pantalla1" class="pantalla activa">
+            <p class="texto-intro">Mi Bautizo</p>
+
+            <div class="marco-foto">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Bebé">
+            </div>
+
+            <h1 class="nombre">Mateo</h1>
+            <p class="fecha-portada">15 · MARZO · 2025</p>
+
+            <button class="btn" onclick="abrirInvitacion()">Ver Invitación</button>
+        </div>
+
+        <div id="pantalla2" class="pantalla oculta">
+            <div class="tarjeta-info">
+                <div>
+                    <div class="icono-superior">🕊️</div>
+
+                    <div class="pasos-indicador">
+                        <span class="paso-dot activo"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
+                    </div>
+
+                    <div class="paso activo">
+                        <p style="font-style: italic; font-family: 'Cinzel', serif; color: #8a9a86;">"Señor, hoy me presentan ante ti para ser bañado con la gracia de tu amor y la luz de tu espíritu."</p>
+
+                        <div style="margin-top: 15px;">
+                            <p style="font-size: 0.85rem; margin-bottom: 2px;">Con la bendición de mis padres:</p>
+                            <p style="font-weight: bold; color: #4a4a4a;">Carlos Ruiz & Ana Garcés</p>
+                        </div>
+
+                        <div class="padrinos-box">
+                            <h5>Mis Padrinos</h5>
+                            <p style="margin: 0; font-weight: bold; color: #4a4a4a; font-size: 1.1rem;">Fernando Garcés</p>
+                            <p style="margin: 0; font-weight: bold; color: #4a4a4a; font-size: 1.1rem;">& Lucía Medina</p>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <div class="evento-caja" style="border:none;">
+                            <span style="font-size: 1.5rem; display: block; margin-bottom: 5px;">⛪</span>
+                            <h4>Ceremonia Religiosa</h4>
+                            <p><strong>11:00 A.M.</strong><br>Parroquia de la Sagrada Familia</p>
+                            <a href="#" class="btn btn-secundario" style="width:100%; margin-top: 10px;">📍 Ubicación de la Iglesia</a>
+                        </div>
+                        <div class="evento-caja">
+                            <span style="font-size: 1.5rem; display: block; margin-bottom: 5px;">🍽️</span>
+                            <h4>Recepción Familiar</h4>
+                            <p><strong>1:30 P.M.</strong><br>Jardín "Los Olivos"<br>Col. Arboledas</p>
+                            <a href="#" class="btn btn-secundario" style="width:100%; margin-top: 10px;">📍 Ubicación de Recepción</a>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <div class="evento-caja" style="border:none;">
+                            <h4>👔 Código de Vestimenta</h4>
+                            <p><strong>Formal de Día / Colores Claros</strong><br><span style="font-size: 0.85rem;">Sugerimos tonos pastel, beige o blanco.</span></p>
+                        </div>
+
+                        <div class="evento-caja">
+                            <h4>🎁 Mesa de Regalos</h4>
+                            <p style="font-size: 0.9rem;">El mejor regalo es su presencia, pero si desean tener un detalle con Mateo, sugerimos:</p>
+                            <div style="background: #f4f6f3; padding: 10px; border-radius: 8px; margin-top: 10px;">
+                                <p style="margin:0; font-weight: bold; color: #8a9a86;">Lluvia de Sobres ✉️</p>
+                                <p style="margin:0; font-size: 0.8rem;">(Aportación voluntaria el día del evento)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="paso">
+                        <h3>Acompáñanos</h3>
+                        <p>Nos hace muy felices compartir este sacramento con nuestra familia y amigos más queridos.</p>
+
+                        <div class="panel-pases">
+                            <p style="color: #8a9a86; font-family: 'Cinzel', serif; font-weight: bold;">Pases de Familia</p>
+                            <div class="numero-pases">4 Personas</div>
+                        </div>
+
+                        <p style="font-size: 0.82rem; color: #888;">Favor de confirmar asistencia antes del 1 de marzo.</p>
+
+                        <button type="button" class="btn" id="btnConfirmar" onclick="simularConfirmacion()">Confirmar Asistencia</button>
+                    </div>
+
+                    <div class="paso">
+                        <div class="estado-confirmado">🕊️ Asistencia registrada</div>
+                        <p>Su confirmación quedó lista con mucha alegría. Presenten este código QR al llegar a la recepción familiar.</p>
+
+                        <div class="qr-box">
+                            <img id="qrImage" alt="Código QR de bautizo">
+                        </div>
+
+                        <div class="qr-detalle">
+                            <strong>Pase familiar</strong>
+                            <p id="qrTexto">Familia invitada · Confirmado · 15 de marzo · 4 personas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="nav-botones">
+                        <button id="btnAnterior" class="btn btn-secundario" style="display:none;" onclick="cambiarPaso(-1)">Anterior</button>
+                        <button id="btnSiguiente" class="btn" onclick="cambiarPaso(1)">Siguiente</button>
+                    </div>
+                    <button class="volver-btn" onclick="cerrarInvitacion()">Volver al inicio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pasos = Array.from(document.querySelectorAll('.paso'));
+        const indicadores = Array.from(document.querySelectorAll('.paso-dot'));
+        const btnAnterior = document.getElementById('btnAnterior');
+        const btnSiguiente = document.getElementById('btnSiguiente');
+        const btnConfirmar = document.getElementById('btnConfirmar');
+        const qrImage = document.getElementById('qrImage');
+        const qrTexto = document.getElementById('qrTexto');
+        const particulasExito = document.getElementById('particulasExito');
+        const explosionExito = document.getElementById('explosionExito');
+
+        const pasoConfirmacion = 3;
+        const pasoQr = 4;
+
+        let pasoActual = 0;
+        let confirmacionRealizada = false;
+
+        function actualizarPasos() {
+            pasos.forEach((paso, indice) => paso.classList.toggle('activo', indice === pasoActual));
+            indicadores.forEach((dot, indice) => dot.classList.toggle('activo', indice === pasoActual));
+
+            btnAnterior.style.display = pasoActual === 0 ? 'none' : 'flex';
+
+            if (pasoActual === pasoQr) {
+                btnSiguiente.style.display = 'none';
+            } else if (pasoActual === pasoConfirmacion) {
+                btnSiguiente.style.display = confirmacionRealizada ? 'flex' : 'none';
+            } else {
+                btnSiguiente.style.display = 'flex';
+            }
+        }
+
+        function cambiarPaso(direccion) {
+            const nuevoPaso = pasoActual + direccion;
+            if (nuevoPaso < 0 || nuevoPaso >= pasos.length) return;
+            if (nuevoPaso === pasoQr && !confirmacionRealizada) return;
+
+            pasoActual = nuevoPaso;
+            actualizarPasos();
+        }
+
+        function abrirInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla1').classList.remove('activa');
+            document.getElementById('pantalla1').classList.add('oculta');
+            document.getElementById('pantalla2').classList.remove('oculta');
+            document.getElementById('pantalla2').classList.add('activa');
+
+            crearBendiciones();
+        }
+
+        function cerrarInvitacion() {
+            pasoActual = 0;
+            reiniciarConfirmacion();
+            actualizarPasos();
+
+            document.getElementById('pantalla2').classList.remove('activa');
+            document.getElementById('pantalla2').classList.add('oculta');
+            document.getElementById('pantalla1').classList.remove('oculta');
+            document.getElementById('pantalla1').classList.add('activa');
+        }
+
+        function crearBendiciones() {
+            const container = document.querySelector('.app-container');
+            const iconos = ['🕊️', '🤍', '✨', '✝️', '✦'];
+
+            for (let i = 0; i < 18; i++) {
+                const item = document.createElement('div');
+                item.innerHTML = iconos[i % iconos.length];
+                item.style.position = 'absolute';
+                item.style.left = Math.random() * 100 + 'vw';
+                item.style.top = '-10vh';
+                item.style.fontSize = (Math.random() * 1 + 0.9) + 'rem';
+                item.style.opacity = '0.8';
+                item.style.transition = 'transform 4s linear, top 4s ease-in, opacity 4s ease-out';
+                item.style.zIndex = '50';
+                container.appendChild(item);
+
+                setTimeout(() => {
+                    item.style.top = '110vh';
+                    item.style.opacity = '0.12';
+                    item.style.transform = 'rotate(' + (Math.random() * 360) + 'deg) translateX(' + ((Math.random() - 0.5) * 36) + 'px)';
+                }, 50);
+
+                setTimeout(() => item.remove(), 4000);
+            }
+        }
+
+        function simularConfirmacion() {
+            confirmacionRealizada = true;
+            btnConfirmar.textContent = 'Confirmado ✓';
+            btnConfirmar.disabled = true;
+            btnConfirmar.style.background = '#d4af37';
+            btnConfirmar.style.boxShadow = 'none';
+
+            generarQrConfirmacion();
+            crearExplosionConfirmacion();
+            crearBendiciones();
+
+            pasoActual = pasoQr;
+            actualizarPasos();
+        }
+
+        function generarQrConfirmacion() {
+            const datos = 'Bautizo Mateo | Confirmado | 15 de marzo | 4 personas | Jardin Los Olivos';
+            qrTexto.textContent = 'Familia invitada · Confirmado · 15 de marzo · 4 personas';
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(datos);
+        }
+
+        function crearExplosionConfirmacion() {
+            particulasExito.innerHTML = '';
+            explosionExito.innerHTML = '';
+
+            for (let i = 0; i < 3; i++) {
+                const anillo = document.createElement('div');
+                anillo.className = 'anillo';
+                anillo.style.animationDelay = (i * 0.12) + 's';
+                explosionExito.appendChild(anillo);
+            }
+
+            for (let i = 0; i < 2; i++) {
+                const flash = document.createElement('div');
+                flash.className = 'flash';
+                flash.style.animationDelay = (i * 0.08) + 's';
+                explosionExito.appendChild(flash);
+            }
+
+            const iconos = ['🕊️', '✝️', '✨', '🤍', '✦'];
+            for (let i = 0; i < 22; i++) {
+                const particula = document.createElement('span');
+                particula.className = 'particula';
+                particula.textContent = iconos[i % iconos.length];
+                particula.style.setProperty('--x', ((Math.random() - 0.5) * 280) + 'px');
+                particula.style.setProperty('--y', ((Math.random() - 0.5) * 220) + 'px');
+                particula.style.setProperty('--giro', ((Math.random() * 320) - 160) + 'deg');
+                particula.style.animationDelay = (i * 0.025) + 's';
+                particulasExito.appendChild(particula);
+            }
+
+            setTimeout(() => {
+                particulasExito.innerHTML = '';
+                explosionExito.innerHTML = '';
+            }, 1600);
+        }
+
+        function reiniciarConfirmacion() {
+            confirmacionRealizada = false;
+            btnConfirmar.textContent = 'Confirmar Asistencia';
+            btnConfirmar.disabled = false;
+            btnConfirmar.style.background = '#8a9a86';
+            btnConfirmar.style.boxShadow = '0 6px 15px rgba(138, 154, 134, 0.3)';
+            qrImage.removeAttribute('src');
+            qrTexto.textContent = 'Familia invitada · Confirmado · 15 de marzo · 4 personas';
+            particulasExito.innerHTML = '';
+            explosionExito.innerHTML = '';
+        }
+
+        actualizarPasos();
+    </script>
+</body>
+</html>
