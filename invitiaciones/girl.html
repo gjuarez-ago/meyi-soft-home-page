@@ -652,26 +652,31 @@
 
         function crearConfeti() {
             const container = document.querySelector('.app-container');
-            for (let i = 0; i < 24; i++) {
-                const corazon = document.createElement('div');
-                corazon.innerHTML = i % 2 === 0 ? '💖' : '✨';
-                corazon.style.position = 'absolute';
-                corazon.style.left = Math.random() * 100 + 'vw';
-                corazon.style.top = '-10vh';
-                corazon.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
-                corazon.style.transition = 'transform 3s linear, top 3s linear';
-                corazon.style.zIndex = '50';
-
-                container.appendChild(corazon);
-
+            const iconos = ['🌸', '✨', '💖', '🎀'];
+            
+            for (let i = 0; i < 25; i++) {
+                const item = document.createElement('div');
+                item.innerHTML = iconos[i % iconos.length];
+                item.style.position = 'absolute';
+                item.style.left = '50vw';
+                item.style.bottom = '-10vh';
+                item.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                item.style.zIndex = '50';
+                
+                const tx = (Math.random() - 0.5) * window.innerWidth;
+                const ty = -(Math.random() * window.innerHeight * 0.8 + 200);
+                
+                item.style.transition = 'transform 2s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 2s ease-out';
+                item.style.transform = `translate(-50%, 0) scale(0.5)`;
+                
+                container.appendChild(item);
+                
                 setTimeout(() => {
-                    corazon.style.top = '110vh';
-                    corazon.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
-                }, 100);
-
-                setTimeout(() => {
-                    corazon.remove();
-                }, 3000);
+                    item.style.transform = `translate(calc(-50% + ${tx}px), ${ty}px) scale(1.2) rotate(${Math.random() * 360}deg)`;
+                    item.style.opacity = '0';
+                }, 50);
+                
+                setTimeout(() => item.remove(), 2100);
             }
         }
 
@@ -698,22 +703,24 @@
 
         function crearExplosionConfirmacion() {
             particulasExito.innerHTML = '';
-            const iconos = ['✨', '💖', '🌸', '🎉', '💫', '🎀'];
-
-            for (let i = 0; i < 18; i++) {
-                const particula = document.createElement('span');
-                particula.className = 'particula';
-                particula.textContent = iconos[i % iconos.length];
-                particula.style.setProperty('--x', ((Math.random() - 0.5) * 260) + 'px');
-                particula.style.setProperty('--y', ((Math.random() - 0.5) * 180) + 'px');
-                particula.style.setProperty('--giro', ((Math.random() * 280) - 140) + 'deg');
-                particula.style.animationDelay = (i * 0.03) + 's';
-                particulasExito.appendChild(particula);
-            }
-
+            const anillos = document.createElement('div');
+            anillos.style.position = 'absolute';
+            anillos.style.left = '50%';
+            anillos.style.top = '50%';
+            anillos.style.width = '20px';
+            anillos.style.height = '20px';
+            anillos.style.border = '4px solid rgba(230,25,110,0.8)';
+            anillos.style.borderRadius = '50%';
+            anillos.style.transform = 'translate(-50%, -50%) scale(0.1)';
+            anillos.style.transition = 'all 1s ease-out';
+            particulasExito.appendChild(anillos);
+            
             setTimeout(() => {
-                particulasExito.innerHTML = '';
-            }, 1600);
+                anillos.style.transform = 'translate(-50%, -50%) scale(15)';
+                anillos.style.opacity = '0';
+            }, 50);
+            
+            setTimeout(() => particulasExito.innerHTML = '', 1100);
         }
 
         function reiniciarConfirmacion() {

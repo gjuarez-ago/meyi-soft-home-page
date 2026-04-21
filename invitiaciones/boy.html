@@ -940,30 +940,31 @@
 
         function crearConfeti() {
             const container = document.querySelector('.app-container');
-            const iconos = ['✨', '🪙', '🏁', '⭐', '🔥', '💨'];
-
-            for (let i = 0; i < 30; i++) {
+            const iconos = ['🏎️', '🍄', '⭐', '💨'];
+            
+            for (let i = 0; i < 15; i++) {
                 const pieza = document.createElement('div');
                 pieza.innerHTML = iconos[i % iconos.length];
                 pieza.style.position = 'absolute';
-                pieza.style.left = Math.random() * 100 + 'vw';
-                pieza.style.top = '-10vh';
-                pieza.style.fontSize = (Math.random() * 1.2 + 0.9) + 'rem';
-                pieza.style.transition = 'transform 3s linear, top 3s linear, opacity 3s linear';
+                const startLeft = Math.random() > 0.5;
+                pieza.style.left = startLeft ? '-20vw' : '120vw';
+                pieza.style.top = (Math.random() * 80 + 10) + 'vh';
+                pieza.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+                pieza.style.transform = startLeft ? 'scaleX(1)' : 'scaleX(-1)';
+                pieza.style.transition = 'left 1.5s linear, opacity 1.5s ease-out';
                 pieza.style.zIndex = '30';
                 pieza.style.opacity = '1';
 
                 container.appendChild(pieza);
 
                 setTimeout(() => {
-                    pieza.style.top = '110vh';
-                    pieza.style.opacity = '0.15';
-                    pieza.style.transform = 'rotate(' + (Math.random() * 360) + 'deg) translateX(' + ((Math.random() - 0.5) * 50) + 'px)';
+                    pieza.style.left = startLeft ? '120vw' : '-20vw';
+                    pieza.style.opacity = '0.5';
                 }, 60);
 
                 setTimeout(() => {
                     pieza.remove();
-                }, 3000);
+                }, 1500);
             }
         }
 
@@ -991,41 +992,36 @@
         function crearExplosionConfirmacion() {
             particulasExito.innerHTML = '';
             explosionExito.innerHTML = '';
-
-            for (let i = 0; i < 3; i++) {
-                const anillo = document.createElement('div');
-                anillo.className = 'anillo';
-                anillo.style.animationDelay = (i * 0.12) + 's';
-                explosionExito.appendChild(anillo);
+            
+            const items = ['🪙', '⭐', '✨'];
+            for (let i = 0; i < 25; i++) {
+                const item = document.createElement('span');
+                item.innerHTML = items[i % items.length];
+                item.style.position = 'absolute';
+                item.style.left = '50%';
+                item.style.bottom = '30%';
+                item.style.fontSize = '2rem';
+                item.style.zIndex = '9999';
+                item.style.pointerEvents = 'none';
+                
+                const tx = (Math.random() - 0.5) * window.innerWidth;
+                const ty = -(Math.random() * 300 + 150);
+                
+                item.style.transition = 'all 1.2s cubic-bezier(0.1, 0.8, 0.4, 1)';
+                item.style.transform = `translate(-50%, 0) scale(0.5)`;
+                
+                particulasExito.appendChild(item);
+                
+                setTimeout(() => {
+                    item.style.transform = `translate(calc(-50% + ${tx}px), ${ty}px) scale(1) rotate(${Math.random() * 720}deg)`;
+                    item.style.opacity = '0';
+                }, 50);
             }
-
-            for (let i = 0; i < 2; i++) {
-                const flash = document.createElement('div');
-                flash.className = 'destello-explosion';
-                flash.style.animationDelay = (i * 0.1) + 's';
-                explosionExito.appendChild(flash);
-            }
-
-            const boost = document.createElement('div');
-            boost.className = 'boost';
-            explosionExito.appendChild(boost);
-
-            const iconos = ['🏁', '🪙', '⭐', '🔥', '💨', '🚦', '🍄', '✨'];
-            for (let i = 0; i < 28; i++) {
-                const particula = document.createElement('span');
-                particula.className = 'particula';
-                particula.textContent = iconos[i % iconos.length];
-                particula.style.setProperty('--x', ((Math.random() - 0.5) * 340) + 'px');
-                particula.style.setProperty('--y', ((Math.random() - 0.5) * 250) + 'px');
-                particula.style.setProperty('--giro', ((Math.random() * 360) - 180) + 'deg');
-                particula.style.animationDelay = (i * 0.02) + 's';
-                particulasExito.appendChild(particula);
-            }
-
+            
             setTimeout(() => {
                 particulasExito.innerHTML = '';
                 explosionExito.innerHTML = '';
-            }, 1700);
+            }, 1500);
         }
 
         function reiniciarConfirmacion() {

@@ -742,31 +742,34 @@
 
         function crearDestellos() {
             const container = document.querySelector('.app-container');
-            const iconos = ['✦', '✧', '✨', '⋆'];
-
-            for (let i = 0; i < 26; i++) {
-                const destello = document.createElement('div');
-                destello.innerHTML = iconos[i % iconos.length];
-                destello.style.position = 'absolute';
-                destello.style.left = Math.random() * 100 + 'vw';
-                destello.style.top = '-10vh';
-                destello.style.fontSize = (Math.random() * 0.9 + 0.8) + 'rem';
-                destello.style.color = '#e6b9bc';
-                destello.style.transition = 'transform 3s linear, top 3s ease-in, opacity 3s ease-out';
-                destello.style.zIndex = '50';
-                destello.style.opacity = '1';
-
-                container.appendChild(destello);
-
+            const iconos = ['🌸', '✨', '💖', '👑', '🎉', '🦋'];
+            
+            for (let i = 0; i < 30; i++) {
+                const item = document.createElement('div');
+                item.innerHTML = iconos[i % iconos.length];
+                item.style.position = 'absolute';
+                item.style.left = '50vw';
+                item.style.top = '50vh';
+                item.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                item.style.zIndex = '50';
+                item.style.pointerEvents = 'none';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 250 + 50;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance - 200;
+                
+                item.style.transition = 'all 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                item.style.transform = `translate(-50%, -50%) scale(0.1) rotate(0deg)`;
+                
+                container.appendChild(item);
+                
                 setTimeout(() => {
-                    destello.style.top = '110vh';
-                    destello.style.opacity = '0.12';
-                    destello.style.transform = 'rotate(' + (Math.random() * 360) + 'deg) translateX(' + ((Math.random() - 0.5) * 36) + 'px)';
+                    item.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(1.5) rotate(${Math.random() * 720}deg)`;
+                    item.style.opacity = '0';
                 }, 50);
-
-                setTimeout(() => {
-                    destello.remove();
-                }, 3000);
+                
+                setTimeout(() => item.remove(), 2600);
             }
         }
 
@@ -795,33 +798,19 @@
         function crearExplosionConfirmacion() {
             particulasExito.innerHTML = '';
             explosionExito.innerHTML = '';
-
-            for (let i = 0; i < 3; i++) {
-                const anillo = document.createElement('div');
-                anillo.className = 'anillo';
-                anillo.style.animationDelay = (i * 0.12) + 's';
-                explosionExito.appendChild(anillo);
-            }
-
-            for (let i = 0; i < 2; i++) {
-                const flash = document.createElement('div');
-                flash.className = 'flash';
-                flash.style.animationDelay = (i * 0.08) + 's';
-                explosionExito.appendChild(flash);
-            }
-
-            const iconos = ['✦', '✧', '✨', '⋆', '💫', '🌙'];
-            for (let i = 0; i < 24; i++) {
-                const particula = document.createElement('span');
-                particula.className = 'particula';
-                particula.textContent = iconos[i % iconos.length];
-                particula.style.setProperty('--x', ((Math.random() - 0.5) * 300) + 'px');
-                particula.style.setProperty('--y', ((Math.random() - 0.5) * 220) + 'px');
-                particula.style.setProperty('--giro', ((Math.random() * 320) - 160) + 'deg');
-                particula.style.animationDelay = (i * 0.025) + 's';
-                particulasExito.appendChild(particula);
-            }
-
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.inset = '0';
+            glow.style.background = 'radial-gradient(circle at 50% 50%, rgba(230,185,188,0.6), transparent 70%)';
+            glow.style.pointerEvents = 'none';
+            glow.style.transition = 'opacity 1.5s ease-out';
+            glow.style.opacity = '1';
+            glow.style.zIndex = '19';
+            explosionExito.appendChild(glow);
+            
+            setTimeout(() => glow.style.opacity = '0', 100);
+            
             setTimeout(() => {
                 particulasExito.innerHTML = '';
                 explosionExito.innerHTML = '';

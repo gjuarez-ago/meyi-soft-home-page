@@ -740,25 +740,27 @@
             const container = document.querySelector('.app-container');
             const iconos = ['🕊️', '🤍', '✨', '✝️', '✦'];
 
-            for (let i = 0; i < 18; i++) {
+            for (let i = 0; i < 20; i++) {
                 const item = document.createElement('div');
                 item.innerHTML = iconos[i % iconos.length];
                 item.style.position = 'absolute';
                 item.style.left = Math.random() * 100 + 'vw';
-                item.style.top = '-10vh';
-                item.style.fontSize = (Math.random() * 1 + 0.9) + 'rem';
-                item.style.opacity = '0.8';
-                item.style.transition = 'transform 4s linear, top 4s ease-in, opacity 4s ease-out';
+                item.style.bottom = '-10vh';
+                item.style.fontSize = (Math.random() * 1 + 1.2) + 'rem';
+                item.style.opacity = '0.9';
+                
+                const duration = Math.random() * 3 + 3;
+                item.style.transition = `bottom ${duration}s ease-in, transform ${duration}s ease-out, opacity ${duration}s ease-out`;
                 item.style.zIndex = '50';
                 container.appendChild(item);
 
                 setTimeout(() => {
-                    item.style.top = '110vh';
-                    item.style.opacity = '0.12';
-                    item.style.transform = 'rotate(' + (Math.random() * 360) + 'deg) translateX(' + ((Math.random() - 0.5) * 36) + 'px)';
+                    item.style.bottom = '110vh';
+                    item.style.opacity = '0';
+                    item.style.transform = `rotate(${Math.random() * 360}deg) translateX(${(Math.random() - 0.5) * 50}px)`;
                 }, 50);
 
-                setTimeout(() => item.remove(), 4000);
+                setTimeout(() => item.remove(), duration * 1000 + 100);
             }
         }
 
@@ -786,37 +788,22 @@
         function crearExplosionConfirmacion() {
             particulasExito.innerHTML = '';
             explosionExito.innerHTML = '';
-
-            for (let i = 0; i < 3; i++) {
-                const anillo = document.createElement('div');
-                anillo.className = 'anillo';
-                anillo.style.animationDelay = (i * 0.12) + 's';
-                explosionExito.appendChild(anillo);
-            }
-
-            for (let i = 0; i < 2; i++) {
-                const flash = document.createElement('div');
-                flash.className = 'flash';
-                flash.style.animationDelay = (i * 0.08) + 's';
-                explosionExito.appendChild(flash);
-            }
-
-            const iconos = ['🕊️', '✝️', '✨', '🤍', '✦'];
-            for (let i = 0; i < 22; i++) {
-                const particula = document.createElement('span');
-                particula.className = 'particula';
-                particula.textContent = iconos[i % iconos.length];
-                particula.style.setProperty('--x', ((Math.random() - 0.5) * 280) + 'px');
-                particula.style.setProperty('--y', ((Math.random() - 0.5) * 220) + 'px');
-                particula.style.setProperty('--giro', ((Math.random() * 320) - 160) + 'deg');
-                particula.style.animationDelay = (i * 0.025) + 's';
-                particulasExito.appendChild(particula);
-            }
-
+            
+            const glow = document.createElement('div');
+            glow.style.position = 'absolute';
+            glow.style.inset = '0';
+            glow.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,255,255,1), transparent 80%)';
+            glow.style.pointerEvents = 'none';
+            glow.style.transition = 'opacity 2s ease-out';
+            glow.style.opacity = '1';
+            glow.style.zIndex = '19';
+            explosionExito.appendChild(glow);
+            
+            setTimeout(() => glow.style.opacity = '0', 200);
             setTimeout(() => {
                 particulasExito.innerHTML = '';
                 explosionExito.innerHTML = '';
-            }, 1600);
+            }, 2300);
         }
 
         function reiniciarConfirmacion() {

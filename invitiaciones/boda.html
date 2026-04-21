@@ -341,25 +341,26 @@
             document.getElementById('pantalla1').classList.add('activa');
         }
 
-        /* Lluvia de destellos dorados sutiles */
+        /* Lluvia de destellos dorados sutiles descendentes */
         function crearDestellos() {
             const container = document.querySelector('.app-container');
-            for (let i = 0; i < 15; i++) {
+            const iconos = ['✨', '🥂', '🤍', '💍', '🕊️'];
+            for (let i = 0; i < 25; i++) {
                 const destello = document.createElement('div');
-                destello.innerHTML = '✨';
+                destello.innerHTML = iconos[i % iconos.length];
                 destello.style.position = 'absolute';
                 destello.style.left = Math.random() * 100 + 'vw';
-                destello.style.top = '110vh';
-                destello.style.fontSize = (Math.random() * 0.8 + 0.5) + 'rem';
-                destello.style.opacity = '0.6';
-                destello.style.transition = 'transform 4s linear, top 4s ease-out, opacity 4s ease-out';
+                destello.style.top = '-10vh';
+                destello.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+                destello.style.opacity = '0.8';
+                destello.style.transition = 'transform 4s linear, top 4s ease-in, opacity 4s ease-out';
                 destello.style.zIndex = '50';
                 container.appendChild(destello);
 
                 setTimeout(() => {
-                    destello.style.top = '-10vh';
+                    destello.style.top = '110vh';
                     destello.style.opacity = '0';
-                    destello.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                    destello.style.transform = `rotate(${Math.random() * 360}deg) translateX(${(Math.random() - 0.5) * 100}px)`;
                 }, 50);
                 setTimeout(() => destello.remove(), 4000);
             }
