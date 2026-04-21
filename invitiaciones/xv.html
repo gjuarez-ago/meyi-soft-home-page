@@ -248,6 +248,7 @@
             flex-direction: column;
             justify-content: space-between;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tarjeta-info h3 {
@@ -702,6 +703,8 @@
             } else {
                 btnSiguiente.style.display = 'flex';
             }
+            
+            document.querySelector('.tarjeta-info').scrollTop = 0;
         }
 
         function cambiarPaso(direccion) {

@@ -255,6 +255,7 @@
             flex-direction: column;
             justify-content: space-between;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             position: relative;
         }
 
@@ -698,6 +699,8 @@
             } else {
                 btnSiguiente.style.display = 'flex';
             }
+            
+            document.querySelector('.tarjeta-info').scrollTop = 0;
         }
 
         function cambiarPaso(direccion) {

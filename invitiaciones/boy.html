@@ -316,6 +316,7 @@
                 0 12px 0 #111,
                 0 24px 36px rgba(0,0,0,0.18);
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -900,6 +901,8 @@
             } else {
                 btnSiguiente.style.display = 'flex';
             }
+            
+            document.querySelector('.tarjeta').scrollTop = 0;
         }
 
         function cambiarPaso(direccion) {
