@@ -103,6 +103,7 @@
             width: 95%; max-height: calc(100vh - 40px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .tarjeta-info h3 {
@@ -190,6 +191,7 @@
                         <span class="paso-dot"></span>
                         <span class="paso-dot"></span>
                         <span class="paso-dot"></span>
+                        <span class="paso-dot"></span>
                     </div>
 
                     <!-- PASO 1: Bienvenida -->
@@ -246,10 +248,20 @@
                         <p style="font-size: 0.8rem; font-style: italic;">Rogamos confirmar su asistencia antes del 10 de Noviembre.</p>
 
                         <button type="button" class="btn" id="btnConfirmar" onclick="simularConfirmacion()">Confirmar Asistencia</button>
+                    </div>
 
-                        <div id="confirmacionDemo" class="confirmacion-demo">
-                            <h4 style="color: #b89153; font-family: 'Playfair Display', serif;">¡Gracias por acompañarnos!</h4>
-                            <p style="font-size: 0.85rem; margin-top: 10px;">Hemos registrado su confirmación. Nos llena de emoción compartir este día con ustedes.</p>
+                    <!-- PASO 5: QR Confirmado -->
+                    <div class="paso">
+                        <div class="icono-boda" style="font-size: 1.2rem; margin-bottom: 5px;">✦ ¡Estás en la lista!</div>
+                        <p style="margin-bottom: 15px;">Hemos registrado su confirmación. Presenta este código QR al llegar para tu acceso a la ceremonia.</p>
+
+                        <div class="qr-box" style="width: 200px; height: 200px; margin: 0 auto 15px; padding: 10px; border-radius: 10px; background: #fff; box-shadow: 0 4px 15px rgba(184, 145, 83, 0.2); border: 1px solid rgba(184, 145, 83, 0.6); display: grid; place-items: center;">
+                            <img id="qrImage" alt="Código QR de acceso" style="width: 100%; height: 100%; display: block; border-radius: 5px;">
+                        </div>
+
+                        <div class="qr-detalle" style="background: rgba(184, 145, 83, 0.05); border: 1px solid rgba(184, 145, 83, 0.3); border-radius: 10px; padding: 12px; margin-bottom: 20px;">
+                            <strong style="color: #b89153; display: block; margin-bottom: 4px;">Pase especial</strong>
+                            <p id="qrTexto" style="font-size: 0.85rem; margin: 0;">Familia Mendoza Ruiz · Confirmado · 24 de noviembre · 2 pases</p>
                         </div>
                     </div>
                 </div>
@@ -271,31 +283,48 @@
         const indicadores = Array.from(document.querySelectorAll('.paso-dot'));
         const btnAnterior = document.getElementById('btnAnterior');
         const btnSiguiente = document.getElementById('btnSiguiente');
-        const confirmacionDemo = document.getElementById('confirmacionDemo');
         const btnConfirmar = document.getElementById('btnConfirmar');
+        const qrImage = document.getElementById('qrImage');
+        const qrTexto = document.getElementById('qrTexto');
+        
+        const pasoConfirmacion = 3;
+        const pasoQr = 4;
+        
         let pasoActual = 0;
+        let confirmacionRealizada = false;
 
         function actualizarPasos() {
             pasos.forEach((paso, indice) => paso.classList.toggle('activo', indice === pasoActual));
             indicadores.forEach((dot, indice) => dot.classList.toggle('activo', indice === pasoActual));
 
             btnAnterior.style.display = pasoActual === 0 ? 'none' : 'block';
-            btnSiguiente.style.display = pasoActual === pasos.length - 1 ? 'none' : 'block';
+            
+            if (pasoActual === pasoQr) {
+                btnSiguiente.style.display = 'none';
+            } else if (pasoActual === pasoConfirmacion) {
+                btnSiguiente.style.display = confirmacionRealizada ? 'block' : 'none';
+            } else {
+                btnSiguiente.style.display = 'block';
+            }
             
             if(pasoActual > 0) { btnSiguiente.style.width = '48%'; } 
             else { btnSiguiente.style.width = '100%'; }
+            
+            document.querySelector('.tarjeta-info').scrollTop = 0;
         }
 
         function cambiarPaso(direccion) {
             const nuevoPaso = pasoActual + direccion;
             if (nuevoPaso < 0 || nuevoPaso >= pasos.length) return;
+            if (nuevoPaso === pasoQr && !confirmacionRealizada) return;
+
             pasoActual = nuevoPaso;
-            if (pasoActual !== pasos.length - 1) reiniciarConfirmacion();
             actualizarPasos();
         }
 
         function abrirInvitacion() {
             pasoActual = 0;
+            confirmacionRealizada = false;
             reiniciarConfirmacion();
             actualizarPasos();
             document.getElementById('pantalla1').classList.remove('activa');
@@ -337,20 +366,33 @@
         }
 
         function simularConfirmacion() {
-            confirmacionDemo.classList.add('visible');
+            confirmacionRealizada = true;
             btnConfirmar.textContent = 'Asistencia Confirmada';
             btnConfirmar.disabled = true;
             btnConfirmar.style.opacity = '0.5';
             btnConfirmar.style.background = '#888';
             crearDestellos();
+
+            generarQrConfirmacion();
+            
+            pasoActual = pasoQr;
+            actualizarPasos();
+        }
+        
+        function generarQrConfirmacion() {
+            const datos = 'Boda Valeria & Alejandro | Familia Mendoza Ruiz | Confirmado | 24 de noviembre | 2 pases';
+            qrTexto.textContent = 'Familia Mendoza Ruiz · Confirmado · 24 de noviembre · 2 pases';
+            qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(datos);
         }
 
         function reiniciarConfirmacion() {
-            confirmacionDemo.classList.remove('visible');
-            btnConfirmar.textContent = 'Confirmar Asistencia';
-            btnConfirmar.disabled = false;
-            btnConfirmar.style.opacity = '1';
-            btnConfirmar.style.background = '#b89153';
+            confirmacionRealizada = false;
+            if (btnConfirmar) {
+                btnConfirmar.textContent = 'Confirmar Asistencia';
+                btnConfirmar.disabled = false;
+                btnConfirmar.style.opacity = '1';
+                btnConfirmar.style.background = '#b89153';
+            }
         }
 
         actualizarPasos();
